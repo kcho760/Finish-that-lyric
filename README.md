@@ -1,8 +1,7 @@
 ## Finish That Lyric
 Finish That Lyric is a web application built with Javascript that was built during my time at App Academy. Users are presented with the first half of the phrase and has to guess the remaining words.
 
-## H2
-How to play:
+## How to play:
 1) Clone the repository
 2) Go to the directory in terminal and type "npm run watch"
 3) Open index.html with Live Server.
