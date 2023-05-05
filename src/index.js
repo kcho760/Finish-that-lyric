@@ -1,6 +1,7 @@
-import Example from "./scripts/example"
+import Playbutton from "./scripts/playButton"
 
 document.addEventListener('DOMContentLoaded', () => {
-    const main = document.getElementById('main');
-    new Example(main)
+    const button = document.getElementById('play-button');
+    new Playbutton(button)
 })
+

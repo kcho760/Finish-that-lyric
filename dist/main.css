@@ -1,7 +1,7 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
-#inner-div {
+#outer-div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,21 +9,20 @@
   background-color: pink;
 }
 
-.item {
+.inner-div1 {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 90%;
   height: 80%;
   background-color: rgb(102, 132, 207);
-  color: white;
+  color: rgb(0, 0, 0);
   text-align: center;
   font-size: 40px;
   font-weight: bold;
-  border-radius: 10px;
 }
 
-.item span {
+.inner-div1 span {
   margin-top: -30%;
   position: absolute;
 }
@@ -41,6 +40,12 @@
   background-color: chartreuse;
 }
 
+#play-button {
+  display: flex;
+  position: fixed;
+  top: 40%;
+}
+
 .logos {
   display: flex;
   align-items: center;
@@ -53,6 +58,14 @@
   width: 50%;
 }
 
+@keyframes move-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
 #item {
   display: inline-block;
   width: 100px;
