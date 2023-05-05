@@ -1,5 +1,4 @@
-#H1
-Finish That Lyric
+## Finish That Lyric
 Finish That Lyric is a web application built with Javascript that was built during my time at App Academy. Users are presented with the first half of the phrase and has to guess the remaining words.
 
 ## H2
@@ -13,7 +12,7 @@ How to play:
 7) There are 4 choices to choose from. Clicking on any of them marks them as your selection. Once you are satisfied with your choice, click next and the game will determine if you were correct.
 8) Keep playing until the game ends to see your final score.
 
-Functionality and MVPs
+## Functionality and MVPs
 In Finish That Lyric, users will be able to:
 -Play a fun trivia game
 -Discover new songs and artists
@@ -22,7 +21,7 @@ In Finish That Lyric, users will be able to:
 -Change background colors
 -Players can restart on Game Over(Finish or Lose)
 
-Technologies, Libraries, APIs:
+## Technologies, Libraries, APIs:
 -HTML
 -Javascript
 -Canvas API
@@ -30,10 +29,10 @@ Technologies, Libraries, APIs:
 -Spotify API
 -Musicxmatch API
 
-Wireframe:
+## Wireframe:
 https://imgur.com/a/uuas1Kd
 
-Implementation Timeline:
+## Implementation Timeline:
 Friday:Outline basic html structure, lifelines, rules, settings volume slider, page transitions, links to github and linkedIn
 Saturday:Work on pull requests from Spotify and Musicxmatch APIs to retrieve lyrics and song/artist info
 Sunday: Program buttons to display proper choices, point system, timers, mute buttons
