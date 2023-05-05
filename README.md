@@ -39,3 +39,10 @@ Monday: CSS styling for buttons, page, background, lobby music
 Tuesday: polish and attempt MediaRecorder API
 Wednesday:Final polish
 Thursday: Morning will be reserved for deploying project to github pages. Afternoon presentation
+
+## Bonus Features
+As there is a limited time for this project, there were a few features I would've prefered but would need more time for research and trials.
+
+-recording audio clips as player input, parsing them into text form, and comparing against the answer.
+
+-more spotify functionality. Adding songs you enjoyed to a list. Choosing genres.
