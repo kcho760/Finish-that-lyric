@@ -16,7 +16,7 @@
   align-items: center;
   width: 90%;
   height: 80%;
-  z-index: 1;
+  z-index: 2;
   background-color: rgb(102, 132, 207);
   color: rgb(0, 0, 0);
   text-align: center;
@@ -67,12 +67,24 @@
   align-items: center;
   width: 90%;
   height: 80%;
-  z-index: 0;
+  z-index: 1;
   /*visibility: hidden;*/
 }
 
 .logo {
   width: 50%;
+}
+
+.inner-div3 {
+  display: block;
+  position: absolute;
+  justify-content: center;
+  background-color: rgb(242, 212, 19);
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  z-index: 0;
+  /*visibility: hidden;*/
 }
 
 #play-area {
@@ -81,6 +93,11 @@
   top: 50%;
   width: 100%;
   height: 40%;
+}
+
+.button-disabled {
+  opacity: 0.1;
+  pointer-events: none;
 }
 
 @keyframes move-left {

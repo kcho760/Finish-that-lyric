@@ -32,12 +32,18 @@ https://imgur.com/a/uuas1Kd
 
 ## Implementation Timeline:
 Friday:Outline basic html structure, lifelines, rules, page transitions, links to github and linkedIn
-Saturday:Work on pull requests from Spotify and Musicxmatch APIs to retrieve lyrics and song/artist info
-Sunday: Program buttons to display proper choices, point system, timers, mute buttons
-Monday: CSS styling for buttons, page, background, lobby music, settings volume slider,
-Tuesday: polish and attempt MediaRecorder API
-Wednesday:Final polish
-Thursday: Morning will be reserved for deploying project to github pages. Afternoon presentation
+  
+Saturday:Work on pull requests from Spotify and Musicxmatch APIs to retrieve lyrics and song/artist info  
+
+Sunday: Program buttons to display proper choices, point system, timers, mute buttons  
+
+Monday: CSS styling for buttons, page, background, lobby music, settings volume slider,  
+
+Tuesday: polish and attempt MediaRecorder API  
+
+Wednesday:Final polish  
+
+Thursday: Morning will be reserved for deploying project to github pages. Afternoon presentation  
 
 ## Bonus Features
 As there is a limited time for this project, there were a few features I would've prefered but would need more time for research and trials.
