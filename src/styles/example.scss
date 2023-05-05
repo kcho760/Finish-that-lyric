@@ -1,6 +1,55 @@
-$color: purple;
+#inner-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: pink;
+  }
+  
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 80%;
+    background-color: rgb(102, 132, 207);
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  
+  .item span {
+    margin-top: -30%;
+    position: absolute;
+  }
+  
+  #settings-button {
+    position: absolute;
+    left: 20%;
+    background-color: chartreuse;
+  }
 
-#main > h1 {
-    border: 4px solid salmon;
-    padding:20px
-}
+  #htp-button {
+    position: absolute;
+    left: 20%;
+    bottom: 40%;
+    background-color: chartreuse;
+  }
+
+  .logos {
+    display: flex;
+    // justify-content: flex-end;
+    align-items: center;
+    width: 25%;
+    margin-left: 400px;
+    margin-top: 80px;
+    
+  }
+  
+  
+  .logo {
+    width: 50%;
+  }
+  
