@@ -4,32 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
     <title>Document</title>
 </head>
 <body>
 <div id="main">
-    <div id="outer-div">
-        <div class="inner-div1">
-          <span>Finish That Lyric!</span>
-          <button id="play-button">PLAY</button>
-          <button id="settings-button">Settings</button>
-          <button id="htp-button">How To Play</button>
-          <div class="logos">
-            <a href="https://github.com/kcho760/Finish-that-lyric" alt="Kevin's github">
-              <img src="./pictures/github-mark.png" class="logo">
-            </a>
-            <a href="https://www.linkedin.com/in/kevin-cho-441a34b1/" alt="Kevin's LinkedIn">
-              <img src="./pictures/LI-In-Bug.png" class="logo">
-            </a>
-          </div>          
-        </div>
-      </div>    
-        <div class="inner-div2">
-          <p>Hello there</p>
-        </div>
+  <div id="background">
+    <div class="inner-div1">
+      <span>Finish That Lyric!</span>
+      <button id="play-button">PLAY</button>
+      <button id="settings-button">Settings</button>
+      <button id="htp-button">How To Play</button>
+      <div class="logos">
+        <a href="https://github.com/kcho760/Finish-that-lyric" alt="Kevin's github">
+          <img src="./pictures/github-mark.png" class="logo">
+        </a>
+        <a href="https://www.linkedin.com/in/kevin-cho-441a34b1/" alt="Kevin's LinkedIn">
+          <img src="./pictures/LI-In-Bug.png" class="logo">
+        </a>
+      </div>          
+    </div>
 
+    <div class="inner-div2">        
+      <div id="artist-name">artist name</div>
+      <div id="song-name">song name</div>
+      <div class="question">
+        <div id="lyrics">lyrics</div>
+        <div id="answer">answer _____</div>
+      </div>
+    
+      <div id="play-area">
+        <span id="timer"></span>
+        <button id="50/50" type="submit">50/50</button>
+        <button id="second-chance" type="submit">Second Chance</button>
+        <button id="button1" type="submit">button1</button>
+        <button id="button2" type="submit">button2</button>
+        <button id="button3" type="submit">button3</button>
+        <button id="button4" type="submit">button4</button>
+      </div>
+    </div>
+
+    <!-- <div class="inner-div3">
+      <div id="result">Correct/Incorrect</div>
+    </div> -->
+
+  </div>
 </div>
 
 </body>

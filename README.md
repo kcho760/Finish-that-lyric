@@ -21,9 +21,8 @@ In Finish That Lyric, users will be able to:
 -Players can restart on Game Over(Finish or Lose)
 
 ## Technologies, Libraries, APIs:
--HTML
+-HTML-Canvas API
 -Javascript
--Canvas API
 -CSS
 -Spotify API
 -Musicxmatch API
@@ -32,10 +31,10 @@ In Finish That Lyric, users will be able to:
 https://imgur.com/a/uuas1Kd
 
 ## Implementation Timeline:
-Friday:Outline basic html structure, lifelines, rules, settings volume slider, page transitions, links to github and linkedIn
+Friday:Outline basic html structure, lifelines, rules, page transitions, links to github and linkedIn
 Saturday:Work on pull requests from Spotify and Musicxmatch APIs to retrieve lyrics and song/artist info
 Sunday: Program buttons to display proper choices, point system, timers, mute buttons
-Monday: CSS styling for buttons, page, background, lobby music
+Monday: CSS styling for buttons, page, background, lobby music, settings volume slider,
 Tuesday: polish and attempt MediaRecorder API
 Wednesday:Final polish
 Thursday: Morning will be reserved for deploying project to github pages. Afternoon presentation

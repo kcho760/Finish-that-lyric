@@ -7,7 +7,7 @@ class Playbutton {
             setTimeout(() => {
                 parent.classList.remove('move-left');
                 parent.style.display = 'none';
-            }, 2000)
+            }, 0)
         })
     }
 }
