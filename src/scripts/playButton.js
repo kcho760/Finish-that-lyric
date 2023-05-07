@@ -2,12 +2,10 @@ class Playbutton {
     constructor(htmlElement) {
         this.htmlElement = htmlElement
         this.htmlElement.addEventListener('click', () => {
-            const parent = this.htmlElement.parentNode
-            parent.classList.add('move-left');
-            setTimeout(() => {
-                parent.classList.remove('move-left');
-                parent.style.display = 'none';
-            }, 0)
+        const innerDiv2 = document.querySelector(".inner-div2");
+        const innerDiv1 = document.querySelector(".inner-div1");
+        innerDiv2.style.display = "block";
+        innerDiv1.style.display = "none";
         })
     }
 }

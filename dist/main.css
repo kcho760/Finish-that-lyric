@@ -22,7 +22,6 @@
   text-align: center;
   font-size: 40px;
   font-weight: bold;
-  /*visibility: hidden;*/
 }
 
 .inner-div1 span {
@@ -75,6 +74,19 @@
   width: 50%;
 }
 
+#play-area {
+  display: block;
+  position: relative;
+  top: 50%;
+  width: 100%;
+  height: 40%;
+}
+
+.button-disabled {
+  opacity: 0.1;
+  pointer-events: none;
+}
+
 .inner-div3 {
   display: block;
   position: absolute;
@@ -87,17 +99,8 @@
   /*visibility: hidden;*/
 }
 
-#play-area {
+#next-question {
   display: block;
-  position: relative;
-  top: 50%;
-  width: 100%;
-  height: 40%;
-}
-
-.button-disabled {
-  opacity: 0.1;
-  pointer-events: none;
 }
 
 @keyframes move-left {
