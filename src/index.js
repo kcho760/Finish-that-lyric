@@ -14,12 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const play = document.getElementById('play-button');
     
     let timer = null;
+    let lyrics = null;
     
     new Playbutton(play)
     
     play.addEventListener('click', () =>{
         timer = new Timer(10);;
-        let lyrics = new Lyrics();
+        lyrics = new Lyrics();
         })
 
     const fifty_fifty = document.getElementById('fifty-fifty');
@@ -27,35 +28,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const second_chance = document.getElementById('second-chance');
     new SecondChance(second_chance)            
     const button1 = document.getElementById('button1');
-    new Button1(button1, lyrics);
+    new Button1(button1, lyrics, timer);
     const button2 = document.getElementById('button2');
-    new Button2(button2, lyrics)
+    new Button2(button2, lyrics, timer)
     const button3 = document.getElementById('button3');
-    new Button3(button3, lyrics)
+    new Button3(button3, lyrics, timer)
     const button4 = document.getElementById('button4');
-    new Button4(button4, lyrics)
+    new Button4(button4, lyrics, timer)
     const nextQuestion = document.getElementById('next-question');
     new NextQuestionButton(nextQuestion);
 
-nextQuestion.addEventListener("click", () => {
-  const innerDiv2 = document.querySelector(".inner-div2");
-  const innerDiv3 = document.querySelector(".inner-div3");
-  innerDiv2.style.display = "block";
-  innerDiv3.style.display = "none";
-  
-  // Clean up the previous Lyrics object
-  if (lyrics !== null) {
-    lyrics.cleanup();
-  }
-  
-  // Reset the lyrics and timer variables
-  let lyrics = new Lyrics();
-  if (timer !== null) {
-    clearInterval(timer.intervalId);
-    timer = null;
-  }
-  timer = new Timer(10);
-});
+    nextQuestion.addEventListener("click", () => {
+    const innerDiv2 = document.querySelector(".inner-div2");
+    const innerDiv3 = document.querySelector(".inner-div3");
+    innerDiv2.style.display = "block";
+    innerDiv3.style.display = "none";
+    // Reset the lyrics and timer variables
+    lyrics.getNewLyrics();
+    timer = new Timer(10);
+    });
 
 })
 

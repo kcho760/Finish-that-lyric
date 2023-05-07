@@ -4,11 +4,6 @@ class Lyrics {
     this.getNewLyrics();
   }
   
-  cleanup() {
-    const innerDiv2 = document.querySelector(".inner-div2");
-    innerDiv2.innerHTML = "";
-  }
-  
   getNewLyrics() {
     // Fetch data and modify lyrics here...
     // This code should be the same as the code inside the last .then() block of the current fetch call
