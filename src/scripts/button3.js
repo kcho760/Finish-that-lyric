@@ -2,7 +2,8 @@ class Button3 {
   constructor(htmlElement, lyrics, timer) {
     this.htmlElement = htmlElement;
     this.lyrics = lyrics;
-    this.timer = timer;
+    this.scores = document.querySelectorAll(".score")
+    this.timer = timer
     this.handleClick();
   }
   handleClick() {
@@ -12,12 +13,16 @@ class Button3 {
       const innerDiv3 = document.querySelector(".inner-div3");
       if (isCorrect) {
         document.querySelector("#answer-result").innerHTML = "Correct!";
+        this.scores.forEach(score=> {
+          score.textContent = Number(score.textContent) + 1
+        })
       } else {
         document.querySelector("#answer-result").innerHTML = "Incorrect";
       }
       innerDiv2.style.display = "none";
       innerDiv3.style.display = "block";
       this.timer.stop();
+      
     });
   }
 }

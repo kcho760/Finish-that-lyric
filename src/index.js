@@ -7,20 +7,31 @@ import Button2 from "./scripts/button2";
 import Button3 from "./scripts/button3";
 import Button4 from "./scripts/button4";
 import NextQuestionButton from "./scripts/nextQuestionButton";
-
 import Timer from "./scripts/timer"
 
 document.addEventListener('DOMContentLoaded', () => {
     const play = document.getElementById('play-button');
-    
-    let timer = null;
+    const scores = document.querySelectorAll(".score");
+    const counters = document.querySelectorAll(".questionCounter")
+    scores.forEach(score=> {
+        score.textContent = 0
+      })
+
+    counters.forEach(counter => {
+        counter.textContent = 0;
+    });
+
+    let timer = new Timer(10);
     let lyrics = null;
     
     new Playbutton(play)
     
     play.addEventListener('click', () =>{
-        timer = new Timer(10);;
+        timer.start();
         lyrics = new Lyrics();
+        counters.forEach(counter => {
+            counter.textContent = parseInt(counter.textContent) + 1;
+        });
         })
 
     const fifty_fifty = document.getElementById('fifty-fifty');
@@ -38,15 +49,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextQuestion = document.getElementById('next-question');
     new NextQuestionButton(nextQuestion);
 
-    nextQuestion.addEventListener("click", () => {
-    const innerDiv2 = document.querySelector(".inner-div2");
-    const innerDiv3 = document.querySelector(".inner-div3");
-    innerDiv2.style.display = "block";
-    innerDiv3.style.display = "none";
-    // Reset the lyrics and timer variables
-    lyrics.getNewLyrics();
-    timer = new Timer(10);
-    });
+nextQuestion.addEventListener("click", () => {
+  const innerDiv2 = document.querySelector(".inner-div2");
+  const innerDiv3 = document.querySelector(".inner-div3");
+  innerDiv2.style.display = "block";
+  innerDiv3.style.display = "none";
+  counters.forEach(counter => {
+    counter.textContent = parseInt(counter.textContent) + 1;
+  });
+  lyrics.getNewLyrics();
+  timer.stop();
+  timer.time = 10; // reset the time to 10 seconds
+  timer.start();
+});
+
 
 })
 

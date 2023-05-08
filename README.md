@@ -26,6 +26,8 @@ In Finish That Lyric, users will be able to:
 -CSS
 -Spotify API
 -Musicxmatch API
+-Spotify API
+-Words API
 
 ## Wireframe:
 https://imgur.com/a/uuas1Kd
@@ -35,11 +37,11 @@ Friday:Outline basic html structure, lifelines, rules, page transitions, links t
   
 Saturday:Work on pull requests from Spotify and Musicxmatch APIs to retrieve lyrics and song/artist info  
 
-Sunday: Program buttons to display proper choices, point system, timers, mute buttons  
+Sunday: Program buttons to display proper choices, point system, timers
 
 Monday: CSS styling for buttons, page, background, lobby music, settings volume slider,  
 
-Tuesday: polish and attempt MediaRecorder API  
+Tuesday: polish and attempt MediaRecorder API  mute buttons 
 
 Wednesday:Final polish  
 
