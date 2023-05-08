@@ -16,13 +16,23 @@ class Button1 {
         this.scores.forEach(score=> {
           score.textContent = Number(score.textContent) + 1
         })
+        innerDiv2.style.display = "none";
+        innerDiv3.style.display = "block";
       } else {
-        document.querySelector("#answer-result").innerHTML = "Incorrect";
+        //add second chance logic
+        let secondChance = document.getElementById("second-chance")
+        if (secondChance.getAttribute("chance") === 'true') {
+          this.timer += 10//might be in string form. check later
+          //add incorrect answer mesage
+          this.htmlElement.disabled = true;
+          secondChance.setAttribute('chance', 'false');//may need to do getAttribute
+        }else{
+          document.querySelector("#answer-result").innerHTML = "Incorrect";
+          innerDiv2.style.display = "none";
+          innerDiv3.style.display = "block";
+          this.timer.stop();
+        }
       }
-      innerDiv2.style.display = "none";
-      innerDiv3.style.display = "block";
-      this.timer.stop();
-      
     });
   }
 }

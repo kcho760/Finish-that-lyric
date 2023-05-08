@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 
     const fifty_fifty = document.getElementById('fifty-fifty');
-    new FiftyFifty(fifty_fifty)    
+    new FiftyFifty(fifty_fifty)
     const second_chance = document.getElementById('second-chance');
     new SecondChance(second_chance)            
     const button1 = document.getElementById('button1');
@@ -64,6 +64,12 @@ nextQuestion.addEventListener("click", () => {
     timer.stop();
     timer.time = 10; // reset the time to 10 seconds
     timer.start();
+    const buttons = document.querySelectorAll(".choice");
+    buttons.forEach(button => {
+      button.setAttribute('data-answer', 'incorrect');
+      button.style.backgroundColor = 'white'
+      button.disabled = false;
+    });
     innerDiv2.style.display = "block";
     innerDiv3.style.display = "none";
   } else {

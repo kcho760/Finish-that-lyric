@@ -6,6 +6,8 @@ class SecondChance {
             if (this.available === true) {
                 this.htmlElement.style.backgroundColor ='grey';
                 this.available = false;
+                this.htmlElement.chance = true;
+                this.htmlElement.disabled = true;
             }
         })
     }

@@ -156,7 +156,7 @@ class Lyrics {
       buttons[answerButtonIndex].textContent = answerWordsText;
       buttons[answerButtonIndex].setAttribute("data-answer", "correct");
       buttons.filter((button, index) => index !== answerButtonIndex).forEach(button => {//each wrong button
-        fetch(`https://api.datamuse.com/words?rel_trg=${answerWords[0].word}&max=100`)
+        fetch(`https://api.datamuse.com/words?rel_trg=${answerWords[0].word}&max=4`)//pulls from datamuse api
           .then(response => response.json())
           .then(words => {
             // Select a random incorrect answer option from the list of related words
