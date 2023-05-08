@@ -153,7 +153,7 @@ class Lyrics {
       const buttons = [document.getElementById("button1"), document.getElementById("button2"), document.getElementById("button3"), document.getElementById("button4")];
       const answerButtonIndex = Math.floor(Math.random() * 4); 
       const answerWordsText = answerWords.map(wordObj => wordObj.word).join(', ');
-      buttons[answerButtonIndex].textContent = answerWordsText;
+      buttons[answerButtonIndex].textContent = answerWordsText.toLowerCase();
       buttons[answerButtonIndex].setAttribute("data-answer", "correct");
       buttons.filter((button, index) => index !== answerButtonIndex).forEach(button => {//each wrong button
         fetch(`https://api.datamuse.com/words?rel_trg=${answerWords[0].word}&max=4`)//pulls from datamuse api
@@ -161,7 +161,7 @@ class Lyrics {
           .then(words => {
             // Select a random incorrect answer option from the list of related words
             const randomWord = words[Math.floor(Math.random() * words.length)].word;
-            button.textContent = randomWord;
+            button.textContent = randomWord.toLowerCase();
             button.setAttribute("data-answer", "incorrect");
           })
           .catch(error => {

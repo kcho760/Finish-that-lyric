@@ -21,11 +21,11 @@ class Button1 {
       } else {
         //add second chance logic
         let secondChance = document.getElementById("second-chance")
-        if (secondChance.getAttribute("chance") === 'true') {
+        if (secondChance.getAttribute("chance") === true) {
           this.timer += 10//might be in string form. check later
-          //add incorrect answer mesage
+          secondChance.setAttribute('chance', false);//may need to do getAttribute
           this.htmlElement.disabled = true;
-          secondChance.setAttribute('chance', 'false');//may need to do getAttribute
+          //add incorrect answer mesage
         }else{
           document.querySelector("#answer-result").innerHTML = "Incorrect";
           innerDiv2.style.display = "none";

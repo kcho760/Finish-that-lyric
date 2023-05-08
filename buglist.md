@@ -1,8 +1,9 @@
 Loading time for lyrics before switching
-Avoid "filler" words. (a, I , the ,...)
+Avoid "filler" words. (a, I , the ,...)-Continue adding to it
 duplicate answers. porbably need to add filter to prevent
-lowercase answers to prevent first word being easily identifiable
 
+lowercase answers to prevent first word being easily identifiable
+//done
 
 Things to do:
 dictionary api for incorrect answers with synonyms
