@@ -13,7 +13,7 @@
   align-items: center;
   width: 90%;
   height: 80%;
-  z-index: 2;
+  z-index: 3;
   background-color: rgb(102, 132, 207);
   color: rgb(0, 0, 0);
   text-align: center;
@@ -64,7 +64,7 @@
   align-items: center;
   width: 90%;
   height: 80%;
-  z-index: 1;
+  z-index: 2;
   /*visibility: hidden;*/
 }
 
@@ -93,12 +93,24 @@
   align-items: center;
   width: 90%;
   height: 80%;
-  z-index: 0;
+  z-index: 1;
   /*visibility: hidden;*/
 }
 
 #next-question {
   display: block;
+}
+
+.inner-div4 {
+  display: block;
+  position: absolute;
+  justify-content: center;
+  background-color: rgb(230, 66, 40);
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  z-index: 0;
+  /*visibility: hidden;*/
 }
 
 @keyframes move-left {
@@ -109,3 +121,4 @@
     transform: translateX(-100%);
   }
 }
+

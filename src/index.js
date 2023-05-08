@@ -50,17 +50,29 @@ document.addEventListener('DOMContentLoaded', () => {
     new NextQuestionButton(nextQuestion);
 
 nextQuestion.addEventListener("click", () => {
-  const innerDiv2 = document.querySelector(".inner-div2");
-  const innerDiv3 = document.querySelector(".inner-div3");
-  innerDiv2.style.display = "block";
-  innerDiv3.style.display = "none";
-  counters.forEach(counter => {
-    counter.textContent = parseInt(counter.textContent) + 1;
-  });
-  lyrics.getNewLyrics();
-  timer.stop();
-  timer.time = 10; // reset the time to 10 seconds
-  timer.start();
+  const counter = document.querySelector(".questionCounter")
+
+  if (counter.textContent !== "5") {
+    const innerDiv2 = document.querySelector(".inner-div2");
+    const innerDiv3 = document.querySelector(".inner-div3");
+
+    counters.forEach(counter => {
+      counter.textContent = parseInt(counter.textContent) + 1;
+    });
+
+    lyrics.getNewLyrics();
+    timer.stop();
+    timer.time = 10; // reset the time to 10 seconds
+    timer.start();
+    innerDiv2.style.display = "block";
+    innerDiv3.style.display = "none";
+  } else {
+    const innerDiv3 = document.querySelector(".inner-div3");
+    const innerDiv4 = document.querySelector(".inner-div4");
+    innerDiv3.style.display = "none";
+    innerDiv4.style.display = "block";
+  }
+  
 });
 
 

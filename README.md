@@ -39,11 +39,11 @@ Saturday:Work on pull requests from Spotify and Musicxmatch APIs to retrieve lyr
 
 Sunday: Program buttons to display proper choices, point system, timers
 
-Monday: CSS styling for buttons, page, background, lobby music, settings volume slider,  
+Monday:  Ending Screen, "settings menu", How to play, incorrect lyrics"dictionary api", Spotify API
 
-Tuesday: polish and attempt MediaRecorder API  mute buttons 
+Tuesday:  mute buttons CSS styling for buttons, page, background, lobby music, settings volume slider,
 
-Wednesday:Final polish  
+Wednesday: polish and attempt MediaRecorder API
 
 Thursday: Morning will be reserved for deploying project to github pages. Afternoon presentation  
 
