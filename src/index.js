@@ -8,9 +8,10 @@ import Button3 from "./scripts/button3";
 import Button4 from "./scripts/button4";
 import NextQuestionButton from "./scripts/nextQuestionButton";
 import Timer from "./scripts/timer"
+import Spotifyapi from "./scripts/spotifyapi";
 
 document.addEventListener('DOMContentLoaded', () => {
-    const play = document.getElementById('play-button');
+  const play = document.getElementById('play-button');
     const scores = document.querySelectorAll(".score");
     const counters = document.querySelectorAll(".questionCounter")
     let mainTimer = document.getElementById("game-timer")
@@ -32,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextQuestion = document.getElementById('next-question');
     new NextQuestionButton(nextQuestion);
     let readyTimer = document.getElementById("ready-timer")
+    const spotify = new Spotifyapi(lyrics.trackName);
+      spotify.getSongByName();
+      spotify.getTrack()
 
     scores.forEach(score=> {
         score.textContent = 0

@@ -3,14 +3,14 @@ class Lyrics {
   constructor() {
     this.getNewLyrics();
   }
-
+  
   getNewLyrics() {
     const apikey = 'c335682791d58fcd23f5d30abbc72d34';
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D%2BTaylor_Swift%26page_size%3D10%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
-
-    fetch(chartUrl)
-      .then(response => {
-        if (!response.ok) {
+    
+  fetch(chartUrl)
+  .then(response => {
+      if (!response.ok) {
           throw new Error(`Failed to retrieve top tracks: ${response.status} ${response.statusText}`);
         }
         return response.json();
