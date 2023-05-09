@@ -21,18 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
         counter.textContent = 0;
     });
 
-    let timer = new Timer(10);
-    let lyrics = null;
+    let timer = new Timer(600);
+    let lyrics = new Lyrics();
     
     new Playbutton(play)
     
     play.addEventListener('click', () =>{
         timer.start();
-        lyrics = new Lyrics();
         counters.forEach(counter => {
             counter.textContent = parseInt(counter.textContent) + 1;
-        });
-        })
+      });
+    })
 
     const fifty_fifty = document.getElementById('fifty-fifty');
     new FiftyFifty(fifty_fifty)
@@ -49,37 +48,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextQuestion = document.getElementById('next-question');
     new NextQuestionButton(nextQuestion);
 
-nextQuestion.addEventListener("click", () => {
-  const counter = document.querySelector(".questionCounter")
-
-  if (counter.textContent !== "5") {
-    const innerDiv2 = document.querySelector(".inner-div2");
-    const innerDiv3 = document.querySelector(".inner-div3");
-
-    counters.forEach(counter => {
-      counter.textContent = parseInt(counter.textContent) + 1;
+    nextQuestion.addEventListener("click", async () => {
+      const counter = document.querySelector(".questionCounter")
+    
+      if (counter.textContent !== "3") {
+        const innerDiv2 = document.querySelector(".inner-div2");
+        const innerDiv3 = document.querySelector(".inner-div3");
+    
+        counters.forEach(counter => {
+          counter.textContent = parseInt(counter.textContent) + 1;
+        });
+    
+        await lyrics.getNewLyrics();
+    
+        timer.stop();
+        timer.time = 600; // reset the time to 10 seconds
+        timer.start();
+        const buttons = document.querySelectorAll(".choice");
+        buttons.forEach(button => {
+          button.setAttribute('data-answer', 'incorrect');
+          button.style.backgroundColor = 'white'
+          button.disabled = false;
+        });
+        innerDiv2.style.display = "block";
+        innerDiv3.style.display = "none";
+      } else {
+        const finalScore = document.querySelector(".final-score")
+        const score = document.getElementById("score")
+        finalScore.textContent = `${score.textContent} / ${counter.textContent}`
+        const innerDiv3 = document.querySelector(".inner-div3");
+        const innerDiv4 = document.querySelector(".inner-div4");
+        innerDiv3.style.display = "none";
+        innerDiv4.style.display = "block";
+      }
     });
-
-    lyrics.getNewLyrics();
-    timer.stop();
-    timer.time = 10; // reset the time to 10 seconds
-    timer.start();
-    const buttons = document.querySelectorAll(".choice");
-    buttons.forEach(button => {
-      button.setAttribute('data-answer', 'incorrect');
-      button.style.backgroundColor = 'white'
-      button.disabled = false;
-    });
-    innerDiv2.style.display = "block";
-    innerDiv3.style.display = "none";
-  } else {
-    const innerDiv3 = document.querySelector(".inner-div3");
-    const innerDiv4 = document.querySelector(".inner-div4");
-    innerDiv3.style.display = "none";
-    innerDiv4.style.display = "block";
-  }
-  
-});
+    
 
 
 })

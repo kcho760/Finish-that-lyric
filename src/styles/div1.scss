@@ -19,7 +19,7 @@
   text-align: center;
   font-size: 40px;
   font-weight: bold;
-  // visibility: hidden;
+  /*visibility: hidden;*/
 }
 
 .inner-div1 span {
@@ -102,16 +102,36 @@
 }
 
 .inner-div4 {
-  display: block;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  background-color: rgb(82, 112, 219);
-
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(82, 112, 219);
   width: 90%;
   height: 80%;
+  margin: auto;
   z-index: 0;
-  /*visibility: hidden;*/
+}
+
+.congrats-text {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+}
+
+.final-score {
+  margin: 0;
+  font-size: 36px;
+  color: white;
+  text-align: center;
+  display: block;
+  text-align: center; /* add this line */
 }
 
 @keyframes move-left {
