@@ -1,10 +1,14 @@
 class Spotifyapi {
     constructor(trackName) {
-        this.lyrics = lyrics; // lyrics is an object
+        this.lyrics = lyrics;
         this.accessToken = '';
         this.songName = trackName;
+        this.headers = {
+            'Authorization': `Bearer ${this.accessToken}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        };
+        this.callapi();
         this.trackId = this.getSongByName();
-        this.callapi(); // Call the method here to fetch the access token
     }
 
     callapi() {        
@@ -22,32 +26,17 @@ class Spotifyapi {
             .then(response => response.json())
             .then(data => {
                 this.accessToken = data.access_token;
+                console.log(this.accessToken)
             })
             .catch(error => console.error(error));
     }
-
-    setHeaders() {
-        this.headers = {
-            'Authorization': `Bearer ${this.accessToken}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
-        };
-    }
-
+    
     getSongByName() {
-        // Call the Spotify API to search for tracks with the given name
         const searchUrl = `https://proxy-92z3.onrender.com/?url=https://api.spotify.com/v1/search?q=${this.songName}&type=track`;
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${this.accessToken}`
-            }
-        };
-        return fetch(searchUrl, requestOptions)
+        return fetch(searchUrl, this.headers)
             .then(response => response.json())
             .then(data => {
-                // Check that the search results contain tracks
                 if (data.tracks.items.length > 0) {
-                    // Extract the track ID from the search results
                     const trackId = data.tracks.items[0].id;
                     console.log(`Track ID for ${this.songName}: ${trackId}`);
                     return trackId;
@@ -55,9 +44,14 @@ class Spotifyapi {
                     throw new Error(`No tracks found for ${this.songName}`);
                 }
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+                throw error;
+            });
     }
-
+    
+    
+      
     getTrack() {
         this.setHeaders();
         const uri = `https://proxy-92z3.onrender.com/?url=https://api.spotify.com/v1/tracks/${this.trackId}`;
@@ -68,9 +62,9 @@ class Spotifyapi {
         };
 
         fetch(uri, requestOptions)
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
     }
 }
 

@@ -33,9 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextQuestion = document.getElementById('next-question');
     new NextQuestionButton(nextQuestion);
     let readyTimer = document.getElementById("ready-timer")
-    const spotify = new Spotifyapi(lyrics.trackName);
-      spotify.getSongByName();
-      spotify.getTrack()
+    const spotify = new Spotifyapi('song name');
+    spotify.getSongByName()
+      .then(trackId => {
+        spotify.trackId = trackId;
+        console.log(spotify.trackId);
+      })
+      .catch(error => console.error(error));    
 
     scores.forEach(score=> {
         score.textContent = 0

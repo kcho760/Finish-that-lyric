@@ -5,12 +5,12 @@ class Lyrics {
   }
   
   getNewLyrics() {
-    const apikey = 'c335682791d58fcd23f5d30abbc72d34';
+    const apikey = 'ebd7f9988730ec4067168ec23e60f3e7';
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D%2BTaylor_Swift%26page_size%3D10%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
     
   fetch(chartUrl)
   .then(response => {
-      if (!response.ok) {
+    if (!response.ok) {
           throw new Error(`Failed to retrieve top tracks: ${response.status} ${response.statusText}`);
         }
         return response.json();
@@ -41,6 +41,12 @@ class Lyrics {
         const snippets = data.message.body.snippet.snippet_body.split("\n");
         const filteredSnippets = snippets.filter(snippet => !snippet.includes("This Lyrics is NOT for Commercial use") && !snippet.endsWith("..."));
         const randomIndex = Math.floor(Math.random() * filteredSnippets.length);
+      //   const snippetText = filteredSnippets[randomIndex].snippet_body;
+      //   const snippetTiming = filteredSnippets[randomIndex].snippet_timing;
+
+      // // Extract the timestamps from the snippet timing string
+      //   const timestamps = snippetTiming.split("|").map(time => parseInt(time, 10));
+
         const wordsToReplace = 1;
         const answerWords = [];
         const randomWordIndex = () => Math.floor(Math.random() * words.length);
