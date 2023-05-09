@@ -1,5 +1,6 @@
 class Timer {
-  constructor(time) {
+  constructor(time, htmlelement) {
+    this.htmlelement = htmlelement;
     this.initialTime = time;
     this.time = time;
     this.intervalId = null;
@@ -9,7 +10,7 @@ class Timer {
 
   printTime() {
     const seconds = this.time;
-    const timer = document.getElementById("timer");
+    const timer = this.htmlelement;
     timer.innerHTML = seconds;
   }
 
@@ -22,16 +23,24 @@ class Timer {
       this.time--;
       this.printTime();
       if (this.time === 0) {
-        this.stop();
-        const timer = document.getElementById("timer");
-        timer.innerHTML = "Time up!";
-        document.querySelector("#answer-result").innerHTML = "Time Out!";
-        setTimeout(() => {
+        if (this.htmlelement === document.getElementById("ready-timer")) {
+          this.stop()
+          const readyScreen = document.querySelector(".ready-screen");
           const innerDiv2 = document.querySelector(".inner-div2");
-          const innerDiv3 = document.querySelector(".inner-div3");
-          innerDiv2.style.display = "none";
-          innerDiv3.style.display = "block";
-        }, 500);
+          readyScreen.style.display = "none";
+          innerDiv2.style.display = "block";
+        }else{
+          this.stop();
+          const timer = this.htmlelement;
+          timer.innerHTML = "Time up!";
+          document.querySelector("#answer-result").innerHTML = "Time Out!";
+          setTimeout(() => {
+            const innerDiv2 = document.querySelector(".inner-div2");
+            const innerDiv3 = document.querySelector(".inner-div3");
+            innerDiv2.style.display = "none";
+            innerDiv3.style.display = "block";
+          }, 500);
+        }
       }
     }, 1000);
   }
