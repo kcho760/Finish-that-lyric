@@ -1,7 +1,6 @@
 //snippet version
 class Lyrics {
   constructor() {
-    this.getNewLyrics();
   }
   
   getNewLyrics() {
@@ -21,8 +20,8 @@ class Lyrics {
         const track_id = tracks[randomIndex].track.track_id;
         const artistName = tracks[randomIndex].track.artist_name;
         const trackName = tracks[randomIndex].track.track_name;
-        document.getElementById("artist-name").innerHTML = artistName;
-        document.getElementById("song-name").innerHTML = trackName;
+        document.getElementById("artist-name").innerText = artistName;
+        document.getElementById("track-name").innerText = trackName;
 
         console.log(`Artist: ${artistName}`);
         console.log(`Track: ${trackName}`);
