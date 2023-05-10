@@ -8,22 +8,16 @@ import Button3 from "./scripts/button3";
 import Button4 from "./scripts/button4";
 import NextQuestionButton from "./scripts/nextQuestionButton";
 import Timer from "./scripts/timer"
-import Spotifyapi from "./scripts/spotifyapi";
-import SpotifyPlayer from "./scripts/spotify_player";
 
 document.addEventListener('DOMContentLoaded',async () => {
   const scores = document.querySelectorAll('.score');
   const counters = document.querySelectorAll('.questionCounter');
   let mainTimer = document.getElementById('game-timer');
   let lyrics;
-  let spotify;
   
   const loadLyrics = async () => {
-    lyrics = new Lyrics("","");
-    lyrics.setLyricsData(lyrics.lyricsdata);
+    lyrics = new Lyrics();
     await lyrics.getNewLyrics();
-    console.log("from index.js", lyrics.trackName)
-    spotify = new Spotifyapi(lyrics.trackName, lyrics.artistName);
     mainTimer = new Timer(13, mainTimer);
     const fifty_fifty = document.getElementById('fifty-fifty');
     new FiftyFifty(fifty_fifty);
@@ -59,23 +53,23 @@ document.addEventListener('DOMContentLoaded',async () => {
   });
   
   
-  // Define onSpotifyWebPlaybackSDKReady in the global scope
-  window.onSpotifyWebPlaybackSDKReady = () => {
-    spotify.authenticate().then(() => {
-      spotify.getTrack().then((data) => { // spotify track data
-        const trackId = data.id;
-        const token = spotify.accessToken;
+  // // Define onSpotifyWebPlaybackSDKReady in the global scope
+  // window.onSpotifyWebPlaybackSDKReady = () => {
+  //   spotify.authenticate().then(() => {
+  //     spotify.getTrack().then((data) => { // spotify track data
+  //       const trackId = data.id;
+  //       const token = spotify.accessToken;
         
-        const spotifyPlayer = new SpotifyPlayer(trackId, token);
-        spotifyPlayer.init();
-        // spotifyPlayer.player.connect();
-      }).catch((error) => {
-        console.error(error);
-      });
-    }).catch((error) => {
-      console.error(error);
-    });
-  };
+  //       const spotifyPlayer = new SpotifyPlayer(trackId, token);
+  //       spotifyPlayer.init();
+  //       // spotifyPlayer.player.connect();
+  //     }).catch((error) => {
+  //       console.error(error);
+  //     });
+  //   }).catch((error) => {
+  //     console.error(error);
+  //   });
+  // };
   
   
 
@@ -107,10 +101,8 @@ document.addEventListener('DOMContentLoaded',async () => {
         button.disabled = false;
       });
       setTimeout(() => {
-        let spotify = new Spotifyapi(trackName);
         readyScreen.style.display = "block";
         innerDiv3.style.display = "none";
-        console.log(spotify.trackName);
       }, 100);
       mainTimer.start();
     } else {

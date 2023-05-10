@@ -262,7 +262,11 @@ table {
 }
 
 .ready-timer {
+  display: flex;
+  justify-content: center;
   font-size: larger;
+  align-items: center;
+  margin-top: 20%;
   color: #fffb00;
 }
 
@@ -290,6 +294,7 @@ table {
   justify-content: center;
   background-image: url("pictures/game-show-background-6000-x-2857-fhwlnvf3pia5ce54.png");
   background-size: cover;
+  color: #fffb00;
   align-items: center;
   width: 90%;
   height: 80%;
@@ -321,6 +326,7 @@ table {
   justify-content: center;
   background-image: url("pictures/game-show-background-6000-x-2857-fhwlnvf3pia5ce54.png");
   background-size: cover;
+  color: #fffb00;
   align-items: center;
   width: 90%;
   height: 80%;
@@ -339,10 +345,6 @@ table {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background-image: url("pictures/game-show-background-6000-x-2857-fhwlnvf3pia5ce54.png");
   background-size: cover;
   width: 90%;

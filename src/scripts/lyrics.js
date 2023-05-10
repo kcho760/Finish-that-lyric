@@ -1,33 +1,28 @@
 //snippet version
 class Lyrics {
-  constructor(artistName,trackName) {
-    this.artistName = artistName;
-    this.trackName = trackName;
-    this.lyricsdata = [];
+  constructor() {
   }
-  
+
 
   async getNewLyrics() {
     const apikey = 'c335682791d58fcd23f5d30abbc72d34';
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D%2BBruno_Mars%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
-    
-  fetch(chartUrl)
-  .then(response => {
-    if (!response.ok) {
+
+    fetch(chartUrl)
+      .then(response => {
+        if (!response.ok) {
           throw new Error(`Failed to retrieve top tracks: ${response.status} ${response.statusText}`);
         }
         return response.json();
       })
       .then(data => {
         const tracks = data.message.body.track_list;
-        console.log(this)
         const randomIndex = Math.floor(Math.random() * tracks.length);
         const track_id = tracks[randomIndex].track.track_id;
-        this.lyricsdata.push(tracks[randomIndex].track.artist_name);
-        this.lyricsdata.push(tracks[randomIndex].track.track_name);
-        console.log(`Artist: ${this.artistName}`);
-        console.log(`Track: ${this.trackName}`);
-
+        this.artistName = tracks[randomIndex].track.artist_name;
+        this.trackName = tracks[randomIndex].track.track_name;
+        document.getElementById("artist-name").textContent = `Artist: ${this.artistName}`;
+        document.getElementById("track-name").textContent = `Track: ${this.trackName}`;
         const snippetsUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.snippet.get%3Ftrack_id%3D${track_id}%26apikey%3D${apikey}`;
         return fetch(snippetsUrl);
       })
@@ -37,23 +32,16 @@ class Lyrics {
         }
         return response.json();
       })
-      //put lyrics into lyrics slot
       .then(data => {
         const snippets = data.message.body.snippet.snippet_body.split("\n");
         const filteredSnippets = snippets.filter(snippet => !snippet.includes("This Lyrics is NOT for Commercial use") && !snippet.endsWith("..."));
         const randomIndex = Math.floor(Math.random() * filteredSnippets.length);
-      //   const snippetText = filteredSnippets[randomIndex].snippet_body;
-      //   const snippetTiming = filteredSnippets[randomIndex].snippet_timing;
-
-      // // Extract the timestamps from the snippet timing string
-      //   const timestamps = snippetTiming.split("|").map(time => parseInt(time, 10));
-
         const wordsToReplace = 1;
         const answerWords = [];
         const randomWordIndex = () => Math.floor(Math.random() * words.length);
         const words = filteredSnippets[randomIndex].split(' ');
-        const commonWords = ["I", "a", "an", "the", "and", "that", "in","you","me","is","do","can","just", "of", "to", "for", "on", "with", "at", "by", "from", "up", "down", "out", "about" ,"my", "I'm"];
-        
+        const commonWords = ["I", "a", "an", "the", "and", "that", "in", "you", "me", "is", "do", "can", "just", "of", "to", "for", "on", "with", "at", "by", "from", "up", "down", "out", "about", "my", "I'm"];
+
         for (let i = 0; i < wordsToReplace; i++) {
           let selectedWord, randomWordIndex;
           while (true) {
@@ -63,13 +51,13 @@ class Lyrics {
               break;
             }
           }
-          answerWords.push({word: selectedWord, index: randomWordIndex});
+          answerWords.push({ word: selectedWord, index: randomWordIndex });
           words[randomWordIndex] = "____";
         }
-        
-        
+
         const question = words.join(' ');
         const lyricsText = `${question}`;
+
         
 
       // Display modified line and set up answer options
@@ -111,12 +99,6 @@ class Lyrics {
       });
     })
     
-  }
-  
-  setLyricsData(lyricsdata) {
-    this.artistName = lyricsdata[0];
-    this.trackName = lyricsdata[1];
-    console.log("get new lyrics done!", this.trackName, this)
   }
 }
 

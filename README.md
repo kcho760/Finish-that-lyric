@@ -21,13 +21,11 @@ In Finish That Lyric, users will be able to:
 -Players can restart on Game Over(Finish or Lose)
 
 ## Technologies, Libraries, APIs:
--HTML-Canvas API
 -Javascript
 -CSS
--Spotify API
 -Musicxmatch API
 -Spotify API
--Words API
+-Datamuse API
 
 ## Wireframe:
 https://imgur.com/a/uuas1Kd
@@ -48,8 +46,8 @@ Wednesday: polish and attempt MediaRecorder API
 Thursday: Morning will be reserved for deploying project to github pages. Afternoon presentation  
 
 ## Bonus Features
-As there is a limited time for this project, there were a few features I would've prefered but would need more time for research and trials.
+As there is a limited time for this project, there were a few features I would've prefered but would need more time for research and tests.
 
 -recording audio clips as player input, parsing them into text form, and comparing against the answer.
 
--more spotify functionality. Adding songs you enjoyed to a list. Choosing genres.
+-spotify functionality. Adding songs you enjoyed to a list. Choosing genres. Listening to clip of lyrics
