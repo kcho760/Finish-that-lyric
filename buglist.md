@@ -1,17 +1,14 @@
-Loading time for lyrics before switching
 Avoid "filler" words. (a, I , the ,...)-Continue adding to it
-duplicate answers. porbably need to add filter to prevent
 
-lowercase answers to prevent first word being easily identifiable
-//done
+last timer will display timeout without stopping previous timer.
+doesn't change screen so... pretend like I don't see it?
 
 Things to do:
-dictionary api for incorrect answers with synonyms
-//swapped to datamuse api for ease of use and better results
-
 lifeline button functions
 // 50/50 complete
 
 spotify playback(timestamp from musixmatch)
+//got track data back
+//need to get timestamps, webplayback fix
 
-delay in calls leads to blank questions before timer begins
+Styling

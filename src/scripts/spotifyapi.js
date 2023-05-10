@@ -42,14 +42,14 @@ class Spotifyapi {
     };
   }
 
-  async getSongByName() {
-    const searchUrl = `https://api.spotify.com/v1/search?q=${this.trackName}&type=track`;
-    const headers = {
-      'Authorization': `Bearer ${this.accessToken}`,
-      'Content-Type': 'application/json'
-    };
-    const response = await fetch(searchUrl, { headers });
-    const data = await response.json();
+async getSongByName() {
+  const searchUrl = `https://api.spotify.com/v1/search?q=${this.trackName}&type=track`;
+  const headers = {
+    'Authorization': `Bearer ${this.accessToken}`,
+    'Content-Type': 'application/json'
+  };
+  const response = await fetch(searchUrl, { headers });
+  const data = await response.json();
     if (data.tracks.items.length > 0) {
       const trackId = data.tracks.items[0].id;
       console.log(`Track ID for ${this.trackName}: ${trackId}`);
@@ -63,6 +63,7 @@ class Spotifyapi {
     if (!this.trackId) {
       await this.authenticate();
     }
+    this.setHeaders();
     const uri = `https://api.spotify.com/v1/tracks/${this.trackId}`;
 
     const requestOptions = {

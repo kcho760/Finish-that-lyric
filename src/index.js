@@ -12,7 +12,6 @@ import Spotifyapi from "./scripts/spotifyapi";
 import SpotifyPlayer from "./scripts/spotify_player";
 
 document.addEventListener('DOMContentLoaded', () => {
-  const play = document.getElementById('play-button');
   const scores = document.querySelectorAll('.score');
   const counters = document.querySelectorAll('.questionCounter');
   let mainTimer = document.getElementById('game-timer');
@@ -21,8 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadLyrics = async () => {
     lyrics = new Lyrics();
     await lyrics.getNewLyrics();
-    const trackName = document.getElementById('track-name').textContent;
-    mainTimer = new Timer(16, mainTimer);
+    mainTimer = new Timer(13, mainTimer);
     const fifty_fifty = document.getElementById('fifty-fifty');
     new FiftyFifty(fifty_fifty);
     const second_chance = document.getElementById('second-chance');
@@ -53,11 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const trackName = document.getElementById('track-name').textContent;
   let spotify = new Spotifyapi(trackName);
-  console.log(trackName);
 
   spotify.authenticate().then(() => {
     spotify.getTrack().then((data) => { // spotify track data
-      const trackId = data;
+      const trackId = data.id;
       const token = spotify.accessToken;
       window.onSpotifyWebPlaybackSDKReady = () => {
         const spotifyPlayer = new SpotifyPlayer(trackId, token);
@@ -72,8 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   playButton.addEventListener('click', async () => {
-    let readyTimer = new Timer(5, document.getElementById("ready-timer"));
+    let readyTimer = new Timer(3, document.getElementById("ready-timer"));
     readyTimer.start();
+    mainTimer.start();
     counters.forEach(counter => {
       counter.textContent = parseInt(counter.textContent) + 1;
     });
@@ -94,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         counter.textContent = parseInt(counter.textContent) + 1;
       });
       
-      await lyrics.getNewLyrics();
-      mainTimer.time = 15;
-      readyTimer.time = 6
+      await lyrics.getNewLyrics(trackName);
+      mainTimer.time = 13;
+      readyTimer.time = 3
       readyTimer.start();
       buttons.forEach(button => {
         button.setAttribute('data-answer', 'incorrect');
@@ -109,9 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(spotify.trackName);
         readyScreen.style.display = "block";
         innerDiv3.style.display = "none";
-      }, 1000);
+      }, 100);
       mainTimer.start();
     } else {
+      mainTimer.time = 13;
       const finalScore = document.querySelector(".final-score")
       const score = document.getElementById("score")
       finalScore.textContent = `${score.textContent} / ${counter.textContent}`
