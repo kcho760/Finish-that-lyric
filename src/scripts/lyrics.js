@@ -1,10 +1,12 @@
 //snippet version
 class Lyrics {
-  constructor() {
+  constructor(artistName,trackName) {
+    this.artistName = artistName;
+    this.trackName = trackName;
   }
   
-  getNewLyrics() {
-    const apikey = 'ebd7f9988730ec4067168ec23e60f3e7';
+  async getNewLyrics() {
+    const apikey = 'c335682791d58fcd23f5d30abbc72d34';
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D%2BBruno_Mars%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
     
   fetch(chartUrl)
@@ -16,15 +18,16 @@ class Lyrics {
       })
       .then(data => {
         const tracks = data.message.body.track_list;
+        console.log(this)
         const randomIndex = Math.floor(Math.random() * tracks.length);
         const track_id = tracks[randomIndex].track.track_id;
-        const artistName = tracks[randomIndex].track.artist_name;
-        const trackName = tracks[randomIndex].track.track_name;
-        document.getElementById("artist-name").innerText = artistName;
-        document.getElementById("track-name").innerText = trackName;
+        this.artistName = tracks[randomIndex].track.artist_name;
+        this.trackName = tracks[randomIndex].track.track_name;
+        document.getElementById("artist-name").innerText = this.artistName;
+        document.getElementById("track-name").innerText = this.trackName;
 
-        console.log(`Artist: ${artistName}`);
-        console.log(`Track: ${trackName}`);
+        console.log(`Artist: ${this.artistName}`);
+        console.log(`Track: ${this.trackName}`);
 
         const snippetsUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.snippet.get%3Ftrack_id%3D${track_id}%26apikey%3D${apikey}`;
         return fetch(snippetsUrl);
@@ -50,7 +53,7 @@ class Lyrics {
         const answerWords = [];
         const randomWordIndex = () => Math.floor(Math.random() * words.length);
         const words = filteredSnippets[randomIndex].split(' ');
-        const commonWords = ["I", "a", "an", "the", "and", "that", "in", "of", "to", "for", "on", "with", "at", "by", "from", "up", "down", "out", "about" ,"my", "I'm"];
+        const commonWords = ["I", "a", "an", "the", "and", "that", "in","you","me","is","do","can","just", "of", "to", "for", "on", "with", "at", "by", "from", "up", "down", "out", "about" ,"my", "I'm"];
         
         for (let i = 0; i < wordsToReplace; i++) {
           let selectedWord, randomWordIndex;
@@ -108,6 +111,7 @@ class Lyrics {
         });
       });
     })
+    console.log("get new lyrics done!", this.trackName, this)
   }
 }
 

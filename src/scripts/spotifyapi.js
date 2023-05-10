@@ -1,8 +1,8 @@
 class Spotifyapi {
-  constructor(trackName) {
-    this.lyrics = lyrics;
+  constructor(trackName,artistname) {
     this.accessToken = '';
     this.trackName = trackName;
+    this.artistName = artistname;
     this.headers = {
       'Authorization': `Bearer ${this.accessToken}`,
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -28,7 +28,6 @@ class Spotifyapi {
     console.log(`Access token: ${this.accessToken}`);
     
     this.accessToken = data.access_token;
-
     this.setHeaders(); // add this line to set headers with updated access token
 
     this.trackId = await this.getSongByName();
@@ -43,7 +42,7 @@ class Spotifyapi {
   }
 
 async getSongByName() {
-  const searchUrl = `https://api.spotify.com/v1/search?q=${this.trackName}&type=track`;
+  const searchUrl = `https://api.spotify.com/v1/search?q=track:${this.trackName} artist:${this.artistName}&type=track`;
   const headers = {
     'Authorization': `Bearer ${this.accessToken}`,
     'Content-Type': 'application/json'
@@ -52,6 +51,7 @@ async getSongByName() {
   const data = await response.json();
     if (data.tracks.items.length > 0) {
       const trackId = data.tracks.items[0].id;
+      console.log(this)
       console.log(`Track ID for ${this.trackName}: ${trackId}`);
       return trackId;
     } else {
