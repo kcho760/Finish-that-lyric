@@ -9,74 +9,92 @@ import Button4 from "./scripts/button4";
 import NextQuestionButton from "./scripts/nextQuestionButton";
 import Timer from "./scripts/timer"
 import Spotifyapi from "./scripts/spotifyapi";
+import SpotifyPlayer from "./scripts/spotify_player";
 
-document.addEventListener('DOMContentLoaded',async () => {
+document.addEventListener('DOMContentLoaded', () => {
   const play = document.getElementById('play-button');
-    const scores = document.querySelectorAll(".score");
-    const counters = document.querySelectorAll(".questionCounter")
-    let mainTimer = document.getElementById("game-timer")
-    let lyrics = new Lyrics();
-    
-    lyrics.addEventListener("load", () => {
-      const trackName = document.getElementById('track-name').textContent;
-      mainTimer = new Timer(16, mainTimer); //kinda hacky way to have the main timer start
-      console.log(trackName)
-      let spotify = new Spotifyapi(trackName);
-      console.log(spotify)
-      const fifty_fifty = document.getElementById('fifty-fifty');
-      new FiftyFifty(fifty_fifty);
-      const second_chance = document.getElementById('second-chance');
-      new SecondChance(second_chance);          
-      const button1 = document.getElementById('button1');
-      new Button1(button1, lyrics, mainTimer);
-      const button2 = document.getElementById('button2');
-      new Button2(button2, lyrics, mainTimer);
-      const button3 = document.getElementById('button3');
-      new Button3(button3, lyrics, mainTimer);
-      const button4 = document.getElementById('button4');
-      new Button4(button4, lyrics, mainTimer);
-      const nextQuestion = document.getElementById('next-question');
-      new NextQuestionButton(nextQuestion);
-      let readyTimer = document.getElementById("ready-timer");
-    });
-    console.log(trackName)
-    
+  const scores = document.querySelectorAll('.score');
+  const counters = document.querySelectorAll('.questionCounter');
+  let mainTimer = document.getElementById('game-timer');
+  let lyrics;
 
-    scores.forEach(score=> {
-        score.textContent = 0
-      })
+  const loadLyrics = async () => {
+    lyrics = new Lyrics();
+    await lyrics.getNewLyrics();
+    const trackName = document.getElementById('track-name').textContent;
+    mainTimer = new Timer(16, mainTimer);
+    const fifty_fifty = document.getElementById('fifty-fifty');
+    new FiftyFifty(fifty_fifty);
+    const second_chance = document.getElementById('second-chance');
+    new SecondChance(second_chance);
+    const button1 = document.getElementById('button1');
+    new Button1(button1, lyrics, mainTimer);
+    const button2 = document.getElementById('button2');
+    new Button2(button2, lyrics, mainTimer);
+    const button3 = document.getElementById('button3');
+    new Button3(button3, lyrics, mainTimer);
+    const button4 = document.getElementById('button4');
+    new Button4(button4, lyrics, mainTimer);
+  };
+  
+  const nextQuestion = document.getElementById('next-question');
+  new NextQuestionButton(nextQuestion);
+  scores.forEach(score=> {
+    score.textContent = 0
+  })
+  
+  counters.forEach(counter => {
+    counter.textContent = 0;
+  });
 
-    counters.forEach(counter => {
-        counter.textContent = 0;
-    });
-    
-    new Playbutton(play)
-    
-    play.addEventListener('click', () =>{
-      let readyTimer = new Timer(5,document.getElementById("ready-timer"));
-      readyTimer.start();
+  const playButton = document.getElementById('play-button');
 
+  new Playbutton(playButton);
 
-      counters.forEach(counter => {
-          counter.textContent = parseInt(counter.textContent) + 1;
-      });
-    })
+  const trackName = document.getElementById('track-name').textContent;
+  let spotify = new Spotifyapi(trackName);
+  console.log(trackName);
 
-
-    nextQuestion.addEventListener("click", async () => {
-      const counter = document.querySelector(".questionCounter")
-    
-      if (counter.textContent !== "3") {
-        const readyScreen = document.querySelector(".ready-screen");
-        const innerDiv3 = document.querySelector(".inner-div3");
-        const buttons = document.querySelectorAll(".choice");
-    
-        counters.forEach(counter => {
-          counter.textContent = parseInt(counter.textContent) + 1;
-        });
-    
-        await lyrics.getNewLyrics();
+  spotify.authenticate().then(() => {
+    spotify.getTrack().then((data) => { // spotify track data
+      const trackId = data;
+      const token = spotify.accessToken;
+      window.onSpotifyWebPlaybackSDKReady = () => {
+        const spotifyPlayer = new SpotifyPlayer(trackId, token);
+        spotifyPlayer.init();
+      };
       
+    }).catch((error) => {
+      console.error(error);
+    });
+  }).catch((error) => {
+    console.error(error);
+  });
+
+  playButton.addEventListener('click', async () => {
+    let readyTimer = new Timer(5, document.getElementById("ready-timer"));
+    readyTimer.start();
+    counters.forEach(counter => {
+      counter.textContent = parseInt(counter.textContent) + 1;
+    });
+  });
+
+  
+  
+  nextQuestion.addEventListener("click", async () => {
+    const counter = document.querySelector(".questionCounter")
+    
+    if (counter.textContent !== "3") {
+      let readyTimer = document.getElementById('ready-timer');
+      readyTimer = new Timer(5, readyTimer)
+      const readyScreen = document.querySelector(".ready-screen");
+      const innerDiv3 = document.querySelector(".inner-div3");
+      const buttons = document.querySelectorAll(".choice");
+      counters.forEach(counter => {
+        counter.textContent = parseInt(counter.textContent) + 1;
+      });
+      
+      await lyrics.getNewLyrics();
       mainTimer.time = 15;
       readyTimer.time = 6
       readyTimer.start();
@@ -86,23 +104,27 @@ document.addEventListener('DOMContentLoaded',async () => {
         button.disabled = false;
       });
       setTimeout(() => {
+        const trackName = document.getElementById('track-name').textContent;
+        let spotify = new Spotifyapi(trackName);
+        console.log(spotify.trackName);
         readyScreen.style.display = "block";
         innerDiv3.style.display = "none";
       }, 1000);
-        mainTimer.start();
-      } else {
-        const finalScore = document.querySelector(".final-score")
-        const score = document.getElementById("score")
-        finalScore.textContent = `${score.textContent} / ${counter.textContent}`
-        const innerDiv3 = document.querySelector(".inner-div3");
+      mainTimer.start();
+    } else {
+      const finalScore = document.querySelector(".final-score")
+      const score = document.getElementById("score")
+      finalScore.textContent = `${score.textContent} / ${counter.textContent}`
+      const innerDiv3 = document.querySelector(".inner-div3");
         const innerDiv4 = document.querySelector(".inner-div4");
         innerDiv3.style.display = "none";
         innerDiv4.style.display = "block";
       }
     });
     
-
-
-})
-
-
+    loadLyrics();
+    
+  })
+  
+  
+  
