@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded',async () => {
   
   const loadLyrics = async () => {
     lyrics = new Lyrics("","");
+    lyrics.setLyricsData(lyrics.lyricsdata);
     await lyrics.getNewLyrics();
     console.log("from index.js", lyrics.trackName)
     spotify = new Spotifyapi(lyrics.trackName, lyrics.artistName);

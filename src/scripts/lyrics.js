@@ -3,8 +3,10 @@ class Lyrics {
   constructor(artistName,trackName) {
     this.artistName = artistName;
     this.trackName = trackName;
+    this.lyricsdata = [];
   }
   
+
   async getNewLyrics() {
     const apikey = 'c335682791d58fcd23f5d30abbc72d34';
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D%2BBruno_Mars%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
@@ -21,11 +23,8 @@ class Lyrics {
         console.log(this)
         const randomIndex = Math.floor(Math.random() * tracks.length);
         const track_id = tracks[randomIndex].track.track_id;
-        this.artistName = tracks[randomIndex].track.artist_name;
-        this.trackName = tracks[randomIndex].track.track_name;
-        document.getElementById("artist-name").innerText = this.artistName;
-        document.getElementById("track-name").innerText = this.trackName;
-
+        this.lyricsdata.push(tracks[randomIndex].track.artist_name);
+        this.lyricsdata.push(tracks[randomIndex].track.track_name);
         console.log(`Artist: ${this.artistName}`);
         console.log(`Track: ${this.trackName}`);
 
@@ -111,6 +110,12 @@ class Lyrics {
         });
       });
     })
+    
+  }
+  
+  setLyricsData(lyricsdata) {
+    this.artistName = lyricsdata[0];
+    this.trackName = lyricsdata[1];
     console.log("get new lyrics done!", this.trackName, this)
   }
 }
