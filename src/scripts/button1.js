@@ -6,17 +6,23 @@ class Button1 {
     this.timer = timer
     this.handleClick();
   }
-  
   handleClick() {
     this.htmlElement.addEventListener("click", () => {
       const isCorrect = this.htmlElement.getAttribute("data-answer") === "correct";
       const innerDiv2 = document.querySelector(".inner-div2");
       const innerDiv3 = document.querySelector(".inner-div3");
+      const audioElement = document.querySelector("#myAudio");
+  
       if (isCorrect) {
         document.querySelector("#answer-result").innerHTML = "Correct!";
         this.scores.forEach(score=> {
           score.textContent = Number(score.textContent) + 1
         })
+  
+        audioElement.src = "audio/Correct Answer Sound Effect - NO COPYRIGHT 🎤🎶.mp3";
+        audioElement.loop = false;
+        audioElement.play();
+  
         innerDiv2.style.display = "none";
         innerDiv3.style.display = "block";
       } else {
@@ -29,6 +35,10 @@ class Button1 {
           this.htmlElement.style.backgroundColor = "";
         } else {
           document.querySelector("#answer-result").innerHTML = "Incorrect";
+          audioElement.src = "audio/Incorrect sound effect.mp3";
+          audioElement.loop = false;
+          audioElement.play();
+  
           innerDiv2.style.display = "none";
           innerDiv3.style.display = "block";
           this.timer.stop();
@@ -36,6 +46,7 @@ class Button1 {
       }
     });
   }
+  
 }
 
 export default Button1;

@@ -9,17 +9,26 @@
     <title>Document</title>
   </head>
   <body>
+    <audio controls autoplay loop muted id="myAudio">
+      <source id="audio-source" src="audio/Game Show Tv Theme Music.mp3" type="audio/mp3">
+    </audio>
+    
     <!-- <script src="https://sdk.scdn.co/spotify-player.js"></script> -->
     <div id="main">
   <div id="background">
+    <img id="mute-button" src="dist/pictures/soundon.png"></img>
+
+    <div id="start-div">
+      <button id="click-me">Ready to play?</button>
+    </div>
+
     <div class="inner-div1">
       <span>Finish That Lyric!</span>
       <div class="menu-buttons">   
         <button id="htp-button">How To Play</button>
         <button id="settings-button">Settings</button>
-        <button id="play-button">PLAY</button>
+        <button id="play-button">PLAY</button> 
       </div>
-      
       <div class="logos">
         <a href="https://github.com/kcho760/Finish-that-lyric" alt="Kevin's github">
           <img src="dist/pictures/github-mark.png" id="github" class="logo">
@@ -35,26 +44,31 @@
     </div>
 
     <div class="inner-div2">
-      <div>Question:
-        <span class="questionCounter">0</span>
-      </div>
-      <div>Score:
-        <div class="score" id="score">0</div>
+      <div class="counter-holder">
+        <div>Question:
+          <span class="questionCounter">0</span>
+        </div>
+        <div>Score:
+          <div class="score" id="score">0</div>
+        </div>
       </div>
             
-      <div id="artist-name">artist name</div>
-      <div id="track-name">track-name</div>
       <br>
       <div class="question">
-        <div id="lyrics">lyrics</div>
+        <div id="artist-name">artist name</div>
+        <div id="track-name">track-name</div>
       </div>
-    
-      <div id="play-area">
-        <div id="game-timer"></div>
+      <div id="lyrics">lyrics</div>
+
+      <div id="lifelines">
         <button id="fifty-fifty" type="submit">50/50</button>
         <button id="second-chance" type="submit" chance= false >Second Chance</button>
+      </div>
+
+      <div id="play-area">
         <button class="choice" id="button1" type="submit" data-answer="incorrect">button1</button>
         <button class="choice" id="button2" type="submit" data-answer="incorrect">button2</button>
+        <div id="game-timer"></div>
         <button class="choice" id="button3" type="submit" data-answer="incorrect">button3</button>
         <button class="choice" id="button4" type="submit" data-answer="incorrect">button4</button>
       </div>

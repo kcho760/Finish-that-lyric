@@ -39,6 +39,10 @@ class Timer {
             const innerDiv3 = document.querySelector(".inner-div3");
             innerDiv2.style.display = "none";
             innerDiv3.style.display = "block";
+            document.getElementById('myAudio').setAttribute('src', 'audio/Incorrect sound effect.mp3');
+            document.getElementById('myAudio').load();
+            const audioElement = document.getElementById('myAudio');
+            audioElement.loop = false;
           }, 500);
         }
       }
