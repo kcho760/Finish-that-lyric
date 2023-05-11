@@ -42,7 +42,12 @@ class Lyrics {
         const answerWords = [];
         const randomWordIndex = () => Math.floor(Math.random() * words.length);
         const words = filteredSnippets[randomIndex].split(' ');
-        const commonWords = ["I","what", "a", "an", "the", "and", "that", "in", "you", "me", "is", "do", "can", "just", "of", "to", "for", "on", "with", "at", "by", "from", "up", "down", "out", "about", "my", "I'm"];
+        const commonWords = ["I","what", "a", "an", "the",
+         "and", "that", "in", "you", "me", "is",
+          "do", "can", "just", "of", "to", "for",
+           "on", "with", "at", "by", "from", "up",
+            "down", "out", "about", "my", "I'm"
+          ,"oh","ooh","oooh","ooooh","oooooh","ooooooh"];
 
         for (let i = 0; i < wordsToReplace; i++) {
           let selectedWord, randomWordIndex;

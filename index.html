@@ -7,10 +7,10 @@
     <link rel="shortcut icon" type="image/png" href="dist/pictures/icons8-song-32.png">
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
-    <title>Document</title>
+    <title>Finish That Lyric!</title>
   </head>
   <body>
-    <audio controls autoplay muted loop id="myAudio" preload="auto">
+    <audio controls autoplay loop id="myAudio" preload="auto">
       <source id="audio-source" src="audio/Game Show Tv Theme Music.mp3" type="audio/mp3">
     </audio>
     
@@ -65,6 +65,14 @@
           </select>
         </div>
       </div>         
+      <div id="how-to-play-menu" style="display: none;">
+        <h1>How To Play</h1><br>
+        <p>You can adjust settings through the settings menu.<br><br>
+          There are 4 answers to choose from. Clicking on any of them marks them as your selection.<br><br>
+          -50/50: Removes two incorrect answers.<br>
+          -Second Chance: Gives second chance.<br><br>
+          Keep playing until the game ends to see your final score.</p>
+      </div>
     </div>
     
 
@@ -79,7 +87,7 @@
         </div>
         <br>
         <div>Score:
-          <div class="score"">0</div>
+          <span class="score" id="div2score">0</span>
         </div>
       </div>
             

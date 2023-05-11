@@ -1,7 +1,7 @@
 ## Finish That Lyric
 Finish That Lyric is a web application built with Javascript that was built during my time at App Academy. Users are presented with the first part of the phrase from a song and has to guess the remaining words.
 
-![Alt text](/home/k/Desktop/app_academy/projects/Finish-that-lyric/dist/pictures/Main_Screen.png)
+![Alt Text](https://raw.githubusercontent.com/kcho760/Finish-that-lyric/main/dist/pictures/Main_Screen.png)
 
 ## How to play:
 1) You can adjust settings through the settings menu.Options currently include:
@@ -15,20 +15,20 @@ Finish That Lyric is a web application built with Javascript that was built duri
     -Second Chance: Will let you choose again if your answer was incorrect. It will also disable the incorrect button you already chose.
 5) Keep playing until the game ends to see your final score.
 
-## Functionality and MVPs
-In Finish That Lyric, users are be able to:
--Play a fun trivia game
--Discover new songs and artists
--Use "life-lines" such as 50/50 and second guess
--Be able to mute sounds
--Choose the artist of their choice
--Players can restart on Game Over(Finish or Lose)
+## Functionality<br>
+In Finish That Lyric, users are be able to:<br>
+-Play a fun trivia game<br>
+-Discover new songs and artists<br>
+-Use "life-lines" such as 50/50 and second guess<br>
+-Be able to mute sounds<br>
+-Choose the artist of their choice<br>
+-Players can restart on Game Over(Finish or Lose)<br>
 
-## Technologies, Libraries, APIs:
--Javascript
--CSS
--Musicxmatch API
--Datamuse API
+## Technologies, Libraries, APIs:<br>
+-Javascript<br>
+-CSS<br>
+-Musicxmatch API<br>
+-Datamuse API<br>
 
 ## Initial Wireframes:
 https://imgur.com/a/uuas1Kd

@@ -34,7 +34,8 @@ class Button4 {
           this.timer += 10;
           secondChance.setAttribute('chance', false);
           this.htmlElement.disabled = true;
-          this.htmlElement.style.backgroundColor = "";
+          this.htmlElement.style.backgroundImage = "none";
+          this.htmlElement.style.backgroundColor = "grey";
         } else {
           document.querySelector("#answer-result").innerHTML = "Incorrect";
           audioElement.src = "audio/Incorrect sound effect.mp3";
@@ -50,6 +51,5 @@ class Button4 {
   }
   
 }
-
 
 export default Button4;

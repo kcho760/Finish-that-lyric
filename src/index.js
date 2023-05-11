@@ -51,6 +51,18 @@ document.addEventListener('DOMContentLoaded',async () => {
         settingsMenu.style.display = 'none'
       };
     });
+
+    const htpButton = document.getElementById('htp-button');
+    const htpMenu = document.getElementById('how-to-play-menu');
+
+    htpButton.addEventListener('click', () => {
+      if (htpMenu.style.display !== 'block'){
+        htpMenu.style.display = 'block'
+      } else {
+        htpMenu.style.display = 'none'
+      };
+    });
+
   
 
     const scores = document.querySelectorAll('.score');
@@ -61,7 +73,7 @@ document.addEventListener('DOMContentLoaded',async () => {
     const loadLyrics = async () => {
       lyrics = new Lyrics();
       await lyrics.getNewLyrics();
-      mainTimer = new Timer(18, mainTimer);
+      mainTimer = new Timer(60, mainTimer);
       const fifty_fifty = document.getElementById('fifty-fifty');
       new FiftyFifty(fifty_fifty);
       const second_chance = document.getElementById('second-chance');
@@ -147,9 +159,10 @@ document.addEventListener('DOMContentLoaded',async () => {
         readyTimer.start();
         buttons.forEach(button => {
           button.setAttribute('data-answer', 'incorrect');
-          button.style.backgroundColor = 'white'
+          button.style.backgroundImage = 'linear-gradient(to top, rgb(200, 44, 62), rgb(216, 232, 77))';
           button.disabled = false;
         });
+        
         setTimeout(() => {
           readyScreen.style.display = "block";
           innerDiv3.style.display = "none";

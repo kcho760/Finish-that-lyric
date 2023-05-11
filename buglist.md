@@ -19,6 +19,10 @@ Sliding curtains transition
 //start button created sliding curtain
 //maybe make side curtains?
 
-Buttons styling
+Restart button style
+end screen make it flashier
+
 
 Styling
+
+//cut down on instructions

@@ -15,6 +15,7 @@ class FiftyFifty {
                 let incorrectButtonsFound = 0
                 for (let i = 0; i < buttons.length; i++) {
                     if (buttons[i].getAttribute('data-answer')==="incorrect") {
+                        buttons[i].style.backgroundImage = 'none';
                         buttons[i].style.backgroundColor = 'grey';
                         buttons[i].disabled = true;
                         incorrectButtonsFound++;
