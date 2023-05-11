@@ -43,3 +43,5 @@ As there is a limited time for this project, there were a few features I would'v
 -recording audio clips as player input, parsing them into text form, and comparing against the answer.
 
 -spotify functionality. Adding songs you enjoyed to a list. Choosing genres. Listening to clip of lyrics
+
+-Doing a spellcheck suggestion for arist names that are spelled incorrectly.
