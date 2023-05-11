@@ -12,6 +12,9 @@ class Timer {
     const seconds = this.time;
     const timer = this.htmlelement;
     timer.innerHTML = seconds;
+    if (this.time === 5) {
+      this.htmlelement.style.color = "red";
+    }
   }
 
   start() {
@@ -34,6 +37,7 @@ class Timer {
           const timer = this.htmlelement;
           timer.innerHTML = "Time up!";
           document.querySelector("#answer-result").innerHTML = "Time Out!";
+          this.htmlelement.style.color = "green"
           setTimeout(() => {
             const innerDiv2 = document.querySelector(".inner-div2");
             const innerDiv3 = document.querySelector(".inner-div3");
@@ -46,6 +50,7 @@ class Timer {
           }, 500);
         }
       }
+
     }, 1000);
   }
 

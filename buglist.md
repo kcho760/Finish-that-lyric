@@ -12,17 +12,7 @@ spotify playback(timestamp from musixmatch)
 //need to get timestamps, webplayback fix
 //moved to bonus features
 
-Settings menu(let users choose artists)
-How to play menu
-
 Sliding curtains transition
-//start button created sliding curtain
 //maybe make side curtains?
 
-Restart button style
-end screen make it flashier
-
-
 Styling
-
-//cut down on instructions

@@ -10,7 +10,7 @@
     <title>Finish That Lyric!</title>
   </head>
   <body>
-    <audio controls autoplay loop id="myAudio" preload="auto">
+    <audio controls autoplay loop muted id="myAudio" preload="auto">
       <source id="audio-source" src="audio/Game Show Tv Theme Music.mp3" type="audio/mp3">
     </audio>
     
@@ -117,9 +117,11 @@
         <div>Question:
           <span class="questionCounter">0</span>
         </div>
+        <br>
         <div>Score:
           <span class="score">0</span>
         </div>
+        <br>
         <div id="answer-result"></div>
       </div>
       <button id="next-question">Next</button>

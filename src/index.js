@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded',async () => {
     const loadLyrics = async () => {
       lyrics = new Lyrics();
       await lyrics.getNewLyrics();
-      mainTimer = new Timer(60, mainTimer);
+      mainTimer = new Timer(18, mainTimer);
       const fifty_fifty = document.getElementById('fifty-fifty');
       new FiftyFifty(fifty_fifty);
       const second_chance = document.getElementById('second-chance');

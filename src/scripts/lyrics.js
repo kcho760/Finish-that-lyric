@@ -2,10 +2,12 @@
 class Lyrics {
   constructor() {
   }
-
+//key1: c335682791d58fcd23f5d30abbc72d34
+//key2: ebd7f9988730ec4067168ec23e60f3e7
+//key3: eca0bf1d91cfe339d5cf01290bca48db
 
   async getNewLyrics() {
-    const apikey = 'eca0bf1d91cfe339d5cf01290bca48db';
+    const apikey = 'c335682791d58fcd23f5d30abbc72d34';
     const artistName = document.getElementById('api-input').value;
     const artistUrl = encodeURIComponent(artistName);
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D${artistName}%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
