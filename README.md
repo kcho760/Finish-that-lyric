@@ -1,51 +1,37 @@
 ## Finish That Lyric
-Finish That Lyric is a web application built with Javascript that was built during my time at App Academy. Users are presented with the first half of the phrase and has to guess the remaining words.
+Finish That Lyric is a web application built with Javascript that was built during my time at App Academy. Users are presented with the first part of the phrase from a song and has to guess the remaining words.
 
 ## How to play:
-1) Clone the repository
-2) Go to the directory in terminal and type "npm run watch"
-3) Open index.html with Live Server.
-4) Settings can be adjusted from either the main screen or during gameplay with the volume slider.
-5) You can see more detailed instructions through the "How to Play" button, or start a new game with the "Begin" button.
-6) A timer will countdown from 5 seconds and partially completed lyrics will appear on screen. An audio clip of the song will play and will stop on the blanks.
-7) There are 4 choices to choose from. Clicking on any of them marks them as your selection. Once you are satisfied with your choice, click next and the game will determine if you were correct.
-8) Keep playing until the game ends to see your final score.
+1) You can adjust settings through the settings menu.Options currently include:
+    -mute toggle
+    -Artist input (You can type in any artists name and musixmatch will search it for you)
+    -Number of questions
+2) You can see more detailed instructions through the "How to Play" button, or start a new game with the "Begin" button.
+3) A timer will countdown from 3 seconds and partially completed lyrics will appear on screen. There are 4 choices to choose from. Clicking on any of them marks them as your selection. Once you are satisfied with your choice, click next and the game will determine if you were correct.
+4) You can use your lifelines. You get one of each per game:
+    -50/50: Will remove two of the incorrect answers for you.
+    -Second Chance: Will let you choose again if your answer was incorrect. It will also disable the incorrect button you already chose.
+5) Keep playing until the game ends to see your final score.
 
 ## Functionality and MVPs
-In Finish That Lyric, users will be able to:
+In Finish That Lyric, users are be able to:
 -Play a fun trivia game
 -Discover new songs and artists
 -Use "life-lines" such as 50/50 and second guess
 -Be able to mute sounds
--Change background colors
+-Choose the artist of their choice
 -Players can restart on Game Over(Finish or Lose)
 
 ## Technologies, Libraries, APIs:
 -Javascript
 -CSS
 -Musicxmatch API
--Spotify API
 -Datamuse API
 
-## Wireframe:
+## Initial Wireframes:
 https://imgur.com/a/uuas1Kd
 
-## Implementation Timeline:
-Friday:Outline basic html structure, lifelines, rules, page transitions, links to github and linkedIn
-  
-Saturday:Work on pull requests from Spotify and Musicxmatch APIs to retrieve lyrics and song/artist info  
-
-Sunday: Program buttons to display proper choices, point system, timers
-
-Monday:  Ending Screen, "settings menu", How to play, incorrect lyrics"dictionary api", Spotify API
-
-Tuesday:  mute buttons CSS styling for buttons, page, background, lobby music, settings volume slider,
-
-Wednesday: polish and attempt MediaRecorder API
-
-Thursday: Morning will be reserved for deploying project to github pages. Afternoon presentation  
-
-## Bonus Features
+## Upcoming Features
 As there is a limited time for this project, there were a few features I would've prefered but would need more time for research and tests.
 
 -recording audio clips as player input, parsing them into text form, and comparing against the answer.

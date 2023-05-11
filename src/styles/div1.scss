@@ -30,7 +30,7 @@
   width: 90%;
   height: 80%;
   z-index: 5;
-  margin-bottom: 39%;
+  margin-bottom: 41%;
   border-radius: 20px;
   transform: translateY(50%);
   // visibility: hidden;
@@ -107,6 +107,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
   height: 100%;
   left: 45%;
 }
@@ -374,7 +375,7 @@
   align-items: center;
   width: 20%;
   margin-left: 5%;
-  margin-top: 49%;
+  margin-top: 51%;
 }
 
 #github {
@@ -449,10 +450,6 @@
   border-bottom: 3px solid rgb(111, 108, 108);
 }
 
-
-.logo {
-  width: 50%;
-}
 
 #play-area {
   display:flex;
@@ -582,4 +579,5 @@
   font-size: 36px;
   color: rgb(229, 235, 49);
   text-align: center;
+  top:40%;
 }
