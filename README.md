@@ -1,6 +1,8 @@
 ## Finish That Lyric
 Finish That Lyric is a web application built with Javascript that was built during my time at App Academy. Users are presented with the first part of the phrase from a song and has to guess the remaining words.
 
+![Alt text](/home/k/Desktop/app_academy/projects/Finish-that-lyric/dist/pictures/Main_Screen.png)
+
 ## How to play:
 1) You can adjust settings through the settings menu.Options currently include:
     -mute toggle
