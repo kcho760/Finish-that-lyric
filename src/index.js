@@ -108,9 +108,11 @@ document.addEventListener('DOMContentLoaded',async () => {
     mainTimer.start();
 
     //music loader for play button start
-    audioSource.src = 'audio/The Countdown Clock-[AudioTrimmer.com].mp3';
-    document.getElementById('myAudio').load();
-    
+    const audio = document.getElementById("myAudio");
+    audio.src = "audio/The Countdown Clock-[AudioTrimmer.com].mp3";
+    audio.loop = false;
+    audio.play();
+
     
     counters.forEach(counter => {
       counter.textContent = parseInt(counter.textContent) + 1;

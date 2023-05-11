@@ -1,7 +1,6 @@
+Bugs:
 Avoid "filler" words. (a, I , the ,...)-Continue adding to it
-
-restarting game will result in last sound loaded being played instead of lobby music
-
+Incorrect Spelling will result in default name being used. Look into spellcheck suggestions.
 
 Things to do:
 spotify playback(timestamp from musixmatch)
