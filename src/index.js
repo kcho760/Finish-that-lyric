@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded',async () => {
   const myAudio = document.getElementById('myAudio');
   clickMe.addEventListener('click', async () => {
     const startDiv = document.getElementById('start-div');
+    //plays music for lobby screen on start
     myAudio.play();
     startDiv.classList.add('move-up');
-    console.log("moved up")
   });
   const muteButton = document.querySelector('#mute-button');
     muteButton.addEventListener('click', () => {
@@ -106,8 +106,8 @@ document.addEventListener('DOMContentLoaded',async () => {
       
     readyTimer.start();
     mainTimer.start();
-    // const button = document.querySelector('button');
-    // const curtain = document.querySelector('.curtain');
+
+    //music loader for play button start
     audioSource.src = 'audio/The Countdown Clock-[AudioTrimmer.com].mp3';
     document.getElementById('myAudio').load();
     
@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded',async () => {
         const readyScreen = document.querySelector(".ready-screen");
         const innerDiv3 = document.querySelector(".inner-div3");
         const buttons = document.querySelectorAll(".choice");
+
         counters.forEach(counter => {
           counter.textContent = parseInt(counter.textContent) + 1;
         });
@@ -157,6 +158,7 @@ document.addEventListener('DOMContentLoaded',async () => {
         mainTimer.time = 18;
         readyTimer.time = 3
         readyTimer.start();
+
         buttons.forEach(button => {
           button.setAttribute('data-answer', 'incorrect');
           button.style.backgroundImage = 'linear-gradient(to top, rgb(200, 44, 62), rgb(216, 232, 77))';
@@ -168,10 +170,15 @@ document.addEventListener('DOMContentLoaded',async () => {
           innerDiv3.style.display = "none";
         }, 100);
         mainTimer.start();
-        const audio = document.getElementById("myAudio");
-      audio.setAttribute("src", "audio/The Countdown Clock-[AudioTrimmer.com].mp3");
-      audio.load();
+
+        //music switcher for next question timer
+      const audio = document.getElementById("myAudio");
+      audio.src = "audio/The Countdown Clock-[AudioTrimmer.com].mp3";
+      audio.loop = false;
+      audio.play();
+
     } else {
+      //end screen logic
       mainTimer.time = 15;
       const finalScore = document.querySelector(".final-score")
       const score = state.points
@@ -180,6 +187,12 @@ document.addEventListener('DOMContentLoaded',async () => {
       const innerDiv4 = document.querySelector(".inner-div4");
       innerDiv3.style.display = "none";
       innerDiv4.style.display = "block";
+
+      //should be audio player for on final screen
+      const audio = document.getElementById("myAudio");
+      audio.setAttribute("src", "audio/Game Show Winner - Music for content creator (mp3cut.net).mp3");
+      audio.load();
+      document.getElementById('myAudio').play();
     }
   });
   
@@ -188,12 +201,15 @@ document.addEventListener('DOMContentLoaded',async () => {
     const scores = document.querySelectorAll('.score');
     const counters = document.querySelectorAll('.questionCounter');
     const finalscore = document.querySelectorAll('.final-score');
-    const audioSource = document.getElementById('audio-source');
-    audioSource.src = 'audio/Game Show Tv Theme Music.mp3';
-    console.log(audioSource.src)
-      document.getElementById('myAudio').load();
-      document.getElementById('myAudio').play();
-
+  
+    const audio = document.getElementById("myAudio");
+    audio.src = "audio/Game Show Tv Theme Music.mp3";
+    audio.loop = false;
+  
+    audio.addEventListener('canplay', () => {
+      audio.play();
+    });
+  
     state.points = 0
     scores.forEach(score => {
       score.textContent = state.points;
@@ -202,7 +218,7 @@ document.addEventListener('DOMContentLoaded',async () => {
       counter.textContent = state.points;
     });
     finalscore.textContent = state.points;
-
+  
     const fiftyFifty = document.getElementById('fifty-fifty');
     fiftyFifty.setAttribute('used', 'false');
     fiftyFifty.disabled = false;
@@ -214,7 +230,6 @@ document.addEventListener('DOMContentLoaded',async () => {
     const innerDiv1 = document.querySelector('.inner-div1');
     innerDiv4.style.display = 'none';
     innerDiv1.style.display = 'flex';
-    
   
     await lyrics.getNewLyrics();
   });
