@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="dist/pictures/icons8-song-32.png">
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <audio controls autoplay muted loop id="myAudio">
+    <audio controls autoplay loop id="myAudio" preload="auto">
       <source id="audio-source" src="audio/Game Show Tv Theme Music.mp3" type="audio/mp3">
     </audio>
     
@@ -23,7 +24,7 @@
     </div>
 
     <div class="inner-div1">
-      <span>Finish That Lyric!</span>
+      <div id="title">Finish That Lyric!</div>
       <div class="menu-buttons">   
         <button id="htp-button">How To Play</button>
         <button id="settings-button">Settings</button>
@@ -36,8 +37,36 @@
         <a href="https://www.linkedin.com/in/kevin-cho-441a34b1/" alt="Kevin's LinkedIn">
           <img src="dist/pictures/LI-In-Bug.png" id="linkedin" class="logo">
         </a>
-      </div>          
+      </div>
+      
+      <div id="inner-div-settings" style="display: none;">
+        <div class="settings-option">
+          <label for="sound-checkbox">Mute sound</label>
+          <input type="checkbox" id="sound-checkbox" name="sound" unchecked>
+        </div>
+        <div class="settings-option">
+          <label for="api-input">Artist:</label>
+          <input type="text" id="api-input" name="api-url" placeholder="Enter Arist Name" value="Bruno Mars">
+        </div>
+        <div>
+          <label for="number-of-questions">Number of Questions</label>
+          <select id="number-of-questions">
+            <option value="">Select a number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>         
     </div>
+    
 
     <div class="ready-screen">
       <div class="ready-timer" id="ready-timer">0</div>
@@ -80,9 +109,8 @@
         <div>Question:
           <span class="questionCounter">0</span>
         </div>
-        <br>
         <div>Score:
-          <div class="score">0</div>
+          <span class="score">0</span>
         </div>
         <div id="answer-result"></div>
       </div>

@@ -5,9 +5,11 @@ class Lyrics {
 
 
   async getNewLyrics() {
-    const apikey = 'ebd7f9988730ec4067168ec23e60f3e7';
-    const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D%2BBruno_Mars%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
-
+    const apikey = 'eca0bf1d91cfe339d5cf01290bca48db';
+    const artistName = document.getElementById('api-input').value;
+    const artistUrl = encodeURIComponent(artistName);
+    const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D${artistName}%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
+  console.log(chartUrl)
     fetch(chartUrl)
       .then(response => {
         if (!response.ok) {

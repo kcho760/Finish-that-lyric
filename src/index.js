@@ -9,6 +9,7 @@ import Button4 from "./scripts/button4";
 import NextQuestionButton from "./scripts/nextQuestionButton";
 import Timer from "./scripts/timer"
 const state = { points: 0 };
+const numQuestions = {number: 3 };
 
 document.addEventListener('DOMContentLoaded',async () => {
   const clickMe = document.getElementById('click-me');
@@ -20,62 +21,84 @@ document.addEventListener('DOMContentLoaded',async () => {
     console.log("moved up")
   });
   const muteButton = document.querySelector('#mute-button');
-  muteButton.addEventListener('click', () => {
-    myAudio.muted = !myAudio.muted;
-    if (myAudio.muted) {
-      muteButton.setAttribute('src', 'dist/pictures/mute.png');
-    } else {
-      muteButton.setAttribute('src', 'dist/pictures/soundon.png');
-    }
-  });
-  
+    muteButton.addEventListener('click', () => {
+      myAudio.muted = !myAudio.muted;
+      if (myAudio.muted) {
+        muteButton.setAttribute('src', 'dist/pictures/mute.png');
+      } else {
+        muteButton.setAttribute('src', 'dist/pictures/soundon.png');
+      }
+    });
 
-  const scores = document.querySelectorAll('.score');
-  const counters = document.querySelectorAll('.questionCounter');
-  let mainTimer = document.getElementById('game-timer');
-  let lyrics;
-  
-  const loadLyrics = async () => {
-    lyrics = new Lyrics();
-    await lyrics.getNewLyrics();
-    mainTimer = new Timer(18, mainTimer);
-    const fifty_fifty = document.getElementById('fifty-fifty');
-    new FiftyFifty(fifty_fifty);
-    const second_chance = document.getElementById('second-chance');
-    new SecondChance(second_chance);
-    const button1 = document.getElementById('button1');
-    new Button1(button1, lyrics, mainTimer, state);
-    const button2 = document.getElementById('button2');
-    new Button2(button2, lyrics, mainTimer, state);
-    const button3 = document.getElementById('button3');
-    new Button3(button3, lyrics, mainTimer, state);
-    const button4 = document.getElementById('button4');
-    new Button4(button4, lyrics, mainTimer, state);
-  };
-  await loadLyrics();
-  
-  scores.forEach(score=> {
-    score.textContent = state.points;
-  })
-  counters.forEach(counter => {
-    counter.textContent = state.points;
-  });
-  
-  const playButton = document.getElementById('play-button');
-  new Playbutton(playButton);
-
-  playButton.addEventListener('click', async () => {
-    let readyTimer = new Timer(3, document.getElementById("ready-timer"));
-    const audioSource = document.getElementById('audio-source');
+    const soundCheckbox = document.getElementById('sound-checkbox');
+    const audioElement = document.getElementById('myAudio');
+    soundCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        audioElement.muted = true;
+      } else {
+        audioElement.muted = false;
+      }
+    });
     
+    
+    const settingsButton = document.getElementById('settings-button');
+    const settingsMenu = document.getElementById('inner-div-settings');
+    
+    settingsButton.addEventListener('click', () => {
+      if (settingsMenu.style.display !== 'block'){
+        settingsMenu.style.display = 'block'
+      }else{
+        settingsMenu.style.display = 'none'
+      };
+    });
+  
+
+    const scores = document.querySelectorAll('.score');
+    const counters = document.querySelectorAll('.questionCounter');
+    let mainTimer = document.getElementById('game-timer');
+    let lyrics;
+    
+    const loadLyrics = async () => {
+      lyrics = new Lyrics();
+      await lyrics.getNewLyrics();
+      mainTimer = new Timer(18, mainTimer);
+      const fifty_fifty = document.getElementById('fifty-fifty');
+      new FiftyFifty(fifty_fifty);
+      const second_chance = document.getElementById('second-chance');
+      new SecondChance(second_chance);
+      const button1 = document.getElementById('button1');
+      new Button1(button1, lyrics, mainTimer, state);
+      const button2 = document.getElementById('button2');
+      new Button2(button2, lyrics, mainTimer, state);
+      const button3 = document.getElementById('button3');
+      new Button3(button3, lyrics, mainTimer, state);
+      const button4 = document.getElementById('button4');
+      new Button4(button4, lyrics, mainTimer, state);
+    };
+    await loadLyrics();
+    
+    scores.forEach(score=> {
+      score.textContent = state.points;
+    })
+    counters.forEach(counter => {
+      counter.textContent = state.points;
+    });
+    
+    const playButton = document.getElementById('play-button');
+    new Playbutton(playButton);
+    
+    playButton.addEventListener('click', async () => {
+      lyrics.getNewLyrics();
+      let readyTimer = new Timer(3, document.getElementById("ready-timer"));
+      const audioSource = document.getElementById('audio-source');
+      
     readyTimer.start();
     mainTimer.start();
     // const button = document.querySelector('button');
     // const curtain = document.querySelector('.curtain');
-    myAudio.currentTime = 3;
-    audioSource.src = 'audio/The Countdown Clock.mp3';
+    audioSource.src = 'audio/The Countdown Clock-[AudioTrimmer.com].mp3';
     document.getElementById('myAudio').load();
-
+    
     
     counters.forEach(counter => {
       counter.textContent = parseInt(counter.textContent) + 1;
@@ -83,42 +106,57 @@ document.addEventListener('DOMContentLoaded',async () => {
   });
   
   // button.addEventListener('click', function() {
-  //   curtain.classList.toggle('open');
-  // });
-  
-  const nextQuestion = document.getElementById('next-question');
-  new NextQuestionButton(nextQuestion);
-  
-  nextQuestion.addEventListener("click", async () => {
-    const counter = document.querySelector(".questionCounter")
-    
-    if (counter.textContent !== "3") {
-      let readyTimer = document.getElementById('ready-timer');
-      readyTimer = new Timer(5, readyTimer)
-      const readyScreen = document.querySelector(".ready-screen");
-      const innerDiv3 = document.querySelector(".inner-div3");
-      const buttons = document.querySelectorAll(".choice");
+    //   curtain.classList.toggle('open');
+    // });
+    const updateQuestionCounter = () => {
+      const counters = document.querySelectorAll('.questionCounter');
       counters.forEach(counter => {
         counter.textContent = parseInt(counter.textContent) + 1;
       });
-      
-      const trackName = document.getElementById('track-name').textContent;
-      await lyrics.getNewLyrics(trackName);
-      mainTimer.time = 13;
-      readyTimer.time = 3
-      readyTimer.start();
-      buttons.forEach(button => {
-        button.setAttribute('data-answer', 'incorrect');
-        button.style.backgroundColor = 'white'
-        button.disabled = false;
-      });
-      setTimeout(() => {
-        readyScreen.style.display = "block";
-        innerDiv3.style.display = "none";
-      }, 100);
-      mainTimer.start();
-      const audio = document.getElementById("myAudio");
-      audio.setAttribute("src", "audio/The Countdown Clock.mp3");
+    }
+
+
+
+    
+    // const numQuestionsSelect = document.getElementById('number-of-questions');
+    // numQuestionsSelect.addEventListener('change', () => {
+    //   numQuestions.number = parseInt(numQuestionsSelect.value);
+    // });
+    const nextQuestion = document.getElementById('next-question');
+    new NextQuestionButton(nextQuestion);
+    
+    nextQuestion.addEventListener("click", async () => {
+      const counter = document.querySelector(".questionCounter")
+      const numQuestionsInput = document.getElementById('number-of-questions');
+      const numQuestions = parseInt(numQuestionsInput.value);
+    
+      if (counter.textContent < numQuestions) {
+        let readyTimer = document.getElementById('ready-timer');
+        readyTimer = new Timer(5, readyTimer)
+        const readyScreen = document.querySelector(".ready-screen");
+        const innerDiv3 = document.querySelector(".inner-div3");
+        const buttons = document.querySelectorAll(".choice");
+        counters.forEach(counter => {
+          counter.textContent = parseInt(counter.textContent) + 1;
+        });
+        
+        const trackName = document.getElementById('track-name').textContent;
+        await lyrics.getNewLyrics(trackName);
+        mainTimer.time = 18;
+        readyTimer.time = 3
+        readyTimer.start();
+        buttons.forEach(button => {
+          button.setAttribute('data-answer', 'incorrect');
+          button.style.backgroundColor = 'white'
+          button.disabled = false;
+        });
+        setTimeout(() => {
+          readyScreen.style.display = "block";
+          innerDiv3.style.display = "none";
+        }, 100);
+        mainTimer.start();
+        const audio = document.getElementById("myAudio");
+      audio.setAttribute("src", "audio/The Countdown Clock-[AudioTrimmer.com].mp3");
       audio.load();
     } else {
       mainTimer.time = 15;
@@ -133,10 +171,16 @@ document.addEventListener('DOMContentLoaded',async () => {
   });
   
   const playAgainButton = document.getElementById('play-again');
-    playAgainButton.addEventListener('click', async () => {
+  playAgainButton.addEventListener('click', async () => {
     const scores = document.querySelectorAll('.score');
     const counters = document.querySelectorAll('.questionCounter');
     const finalscore = document.querySelectorAll('.final-score');
+    const audioSource = document.getElementById('audio-source');
+    audioSource.src = 'audio/Game Show Tv Theme Music.mp3';
+    console.log(audioSource.src)
+      document.getElementById('myAudio').load();
+      document.getElementById('myAudio').play();
+
     state.points = 0
     scores.forEach(score => {
       score.textContent = state.points;
@@ -156,7 +200,7 @@ document.addEventListener('DOMContentLoaded',async () => {
     const innerDiv4 = document.querySelector('.inner-div4');
     const innerDiv1 = document.querySelector('.inner-div1');
     innerDiv4.style.display = 'none';
-    innerDiv1.style.display = 'block';
+    innerDiv1.style.display = 'flex';
     
   
     await lyrics.getNewLyrics();

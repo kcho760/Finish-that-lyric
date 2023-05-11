@@ -71,11 +71,11 @@
   text-align: center;
   padding: 17px 48px;
   color: #fff;
-  background-color: #ce1710;
+  background-color: #ba2a25;
   height: 48px;
   :hover{
       transform: scale(1.04);
-      background-color: #21e065;
+      background-color: #08983b;
   }
 
 }
@@ -103,11 +103,58 @@
 
 .menu-buttons {
   display: flex;
+  position: absolute;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+  left: 45%;
 }
+
+#settings-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#inner-div-settings {
+  display: none;
+  position: absolute;
+  font-size: 15px;
+  background-color: pink;
+  color: black;
+  top: 50%;
+  left: 50%;
+  transform: translate(-150%, -50%);
+  z-index: 1;
+}
+
+#settings-button {
+  position: relative;
+}
+
+#settings-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+
+#title {
+  position: relative;
+  bottom: 140px; /* Adjust this value as needed */
+  left: 0%;
+}
+
 
 
 #play-button {
@@ -325,9 +372,9 @@
   justify-content: center;
   position: absolute;
   align-items: center;
-  width: 25%;
+  width: 20%;
   margin-left: 5%;
-  margin-top: 52%;
+  margin-top: 49%;
 }
 
 #github {
@@ -472,6 +519,11 @@
 
 #answer-result {
   display:flex;
+  flex-direction: column;
+}
+
+.inner-div3 #score {
+  display: inline-block;
   justify-content: center;
   align-items: center;
 }
@@ -521,7 +573,8 @@
 }
 
 #play-again{
-  margin-top: 150px;
+  margin-top: 340px;
+  margin-left: 46.2%;
 }
 
 .final-score {
