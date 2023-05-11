@@ -5,8 +5,6 @@ doesn't change screen so... pretend like I don't see it?
 
 restarting game will result in last sound loaded being played instead of lobby music
 
-number of questions doesn't reset and cannot be adjusted after first round
-
 
 Things to do:
 spotify playback(timestamp from musixmatch)
@@ -19,5 +17,8 @@ How to play menu
 
 Sliding curtains transition
 //start button created sliding curtain
+//maybe make side curtains?
+
+Buttons styling
 
 Styling
