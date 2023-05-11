@@ -1,9 +1,10 @@
 class Button4 {
-  constructor(htmlElement, lyrics, timer) {
+  constructor(htmlElement, lyrics, timer, state) {
     this.htmlElement = htmlElement;
     this.lyrics = lyrics;
     this.scores = document.querySelectorAll(".score")
     this.timer = timer
+    this.state = state
     this.handleClick();
   }
   handleClick() {
@@ -15,14 +16,15 @@ class Button4 {
   
       if (isCorrect) {
         document.querySelector("#answer-result").innerHTML = "Correct!";
-        this.scores.forEach(score=> {
-          score.textContent = Number(score.textContent) + 1
-        })
-  
+        this.state.points++;
+        this.scores.forEach(score => {
+          score.textContent = this.state.points;
+        });
+
         audioElement.src = "audio/Correct Answer Sound Effect - NO COPYRIGHT 🎤🎶.mp3";
         audioElement.loop = false;
         audioElement.play();
-  
+        this.timer.stop();
         innerDiv2.style.display = "none";
         innerDiv3.style.display = "block";
       } else {
@@ -48,5 +50,6 @@ class Button4 {
   }
   
 }
+
 
 export default Button4;

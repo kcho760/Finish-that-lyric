@@ -9,7 +9,7 @@
     <title>Document</title>
   </head>
   <body>
-    <audio controls autoplay loop muted id="myAudio">
+    <audio controls autoplay muted loop id="myAudio">
       <source id="audio-source" src="audio/Game Show Tv Theme Music.mp3" type="audio/mp3">
     </audio>
     
@@ -48,8 +48,9 @@
         <div>Question:
           <span class="questionCounter">0</span>
         </div>
+        <br>
         <div>Score:
-          <div class="score" id="score">0</div>
+          <div class="score"">0</div>
         </div>
       </div>
             
@@ -75,20 +76,28 @@
     </div>
 
     <div class="inner-div3">
-      <div class="counterHolder">Question:
-        <span class="questionCounter">0</span>
+      <div class="counterHolder">
+        <div>Question:
+          <span class="questionCounter">0</span>
+        </div>
+        <br>
+        <div>Score:
+          <div class="score">0</div>
+        </div>
+        <div id="answer-result"></div>
       </div>
-      <div class="score" id="score">0</div>
-      <div id="answer-result"></div>
       <button id="next-question">Next</button>
     </div>
 
     <div class="inner-div4">
-      <p class="congrats-text">Congratulations! 
-        Your final score is:
-      </p>
-      <p class="final-score">0</p>
+      <div class="text-container">
+        <p class="congrats-text">Congratulations! Your final score is:</p>
+        <p class="final-score">0</p>
+      </div>
+
+      <button id="play-again">Play Again?</button>
     </div>
+    
     
 
   </div>

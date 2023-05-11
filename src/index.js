@@ -8,6 +8,7 @@ import Button3 from "./scripts/button3";
 import Button4 from "./scripts/button4";
 import NextQuestionButton from "./scripts/nextQuestionButton";
 import Timer from "./scripts/timer"
+const state = { points: 0 };
 
 document.addEventListener('DOMContentLoaded',async () => {
   const clickMe = document.getElementById('click-me');
@@ -43,21 +44,21 @@ document.addEventListener('DOMContentLoaded',async () => {
     const second_chance = document.getElementById('second-chance');
     new SecondChance(second_chance);
     const button1 = document.getElementById('button1');
-    new Button1(button1, lyrics, mainTimer);
+    new Button1(button1, lyrics, mainTimer, state);
     const button2 = document.getElementById('button2');
-    new Button2(button2, lyrics, mainTimer);
+    new Button2(button2, lyrics, mainTimer, state);
     const button3 = document.getElementById('button3');
-    new Button3(button3, lyrics, mainTimer);
+    new Button3(button3, lyrics, mainTimer, state);
     const button4 = document.getElementById('button4');
-    new Button4(button4, lyrics, mainTimer);
+    new Button4(button4, lyrics, mainTimer, state);
   };
   await loadLyrics();
   
   scores.forEach(score=> {
-    score.textContent = 0
+    score.textContent = state.points;
   })
   counters.forEach(counter => {
-    counter.textContent = 0;
+    counter.textContent = state.points;
   });
   
   const playButton = document.getElementById('play-button');
@@ -69,43 +70,22 @@ document.addEventListener('DOMContentLoaded',async () => {
     
     readyTimer.start();
     mainTimer.start();
-    const button = document.querySelector('button');
-    const curtain = document.querySelector('.curtain');
+    // const button = document.querySelector('button');
+    // const curtain = document.querySelector('.curtain');
     myAudio.currentTime = 3;
     audioSource.src = 'audio/The Countdown Clock.mp3';
     document.getElementById('myAudio').load();
 
-    button.addEventListener('click', function() {
-      curtain.classList.toggle('open');
-    });
-
+    
     counters.forEach(counter => {
       counter.textContent = parseInt(counter.textContent) + 1;
     });
   });
   
+  // button.addEventListener('click', function() {
+  //   curtain.classList.toggle('open');
+  // });
   
-  // // Define onSpotifyWebPlaybackSDKReady in the global scope
-  // window.onSpotifyWebPlaybackSDKReady = () => {
-  //   spotify.authenticate().then(() => {
-  //     spotify.getTrack().then((data) => { // spotify track data
-  //       const trackId = data.id;
-  //       const token = spotify.accessToken;
-        
-  //       const spotifyPlayer = new SpotifyPlayer(trackId, token);
-  //       spotifyPlayer.init();
-  //       // spotifyPlayer.player.connect();
-  //     }).catch((error) => {
-  //       console.error(error);
-  //     });
-  //   }).catch((error) => {
-  //     console.error(error);
-  //   });
-  // };
-  
-  
-
-
   const nextQuestion = document.getElementById('next-question');
   new NextQuestionButton(nextQuestion);
   
@@ -140,13 +120,11 @@ document.addEventListener('DOMContentLoaded',async () => {
       const audio = document.getElementById("myAudio");
       audio.setAttribute("src", "audio/The Countdown Clock.mp3");
       audio.load();
-      
-      
     } else {
       mainTimer.time = 15;
       const finalScore = document.querySelector(".final-score")
-      const score = document.getElementById("score")
-      finalScore.textContent = `${score.textContent} / ${counter.textContent}`
+      const score = state.points
+      finalScore.textContent = `${score} / ${counter.textContent}`
       const innerDiv3 = document.querySelector(".inner-div3");
       const innerDiv4 = document.querySelector(".inner-div4");
       innerDiv3.style.display = "none";
@@ -154,6 +132,35 @@ document.addEventListener('DOMContentLoaded',async () => {
     }
   });
   
+  const playAgainButton = document.getElementById('play-again');
+    playAgainButton.addEventListener('click', async () => {
+    const scores = document.querySelectorAll('.score');
+    const counters = document.querySelectorAll('.questionCounter');
+    const finalscore = document.querySelectorAll('.final-score');
+    state.points = 0
+    scores.forEach(score => {
+      score.textContent = state.points;
+    });
+    counters.forEach(counter => {
+      counter.textContent = state.points;
+    });
+    finalscore.textContent = state.points;
+
+    const fiftyFifty = document.getElementById('fifty-fifty');
+    fiftyFifty.setAttribute('used', 'false');
+    fiftyFifty.disabled = false;
+    const secondChance = document.getElementById('second-chance');
+    secondChance.setAttribute('used', 'false');
+    secondChance.disabled = false;
+  
+    const innerDiv4 = document.querySelector('.inner-div4');
+    const innerDiv1 = document.querySelector('.inner-div1');
+    innerDiv4.style.display = 'none';
+    innerDiv1.style.display = 'block';
+    
+  
+    await lyrics.getNewLyrics();
+  });
   
 })
 

@@ -5,7 +5,7 @@ class Lyrics {
 
 
   async getNewLyrics() {
-    const apikey = 'c335682791d58fcd23f5d30abbc72d34';
+    const apikey = 'ebd7f9988730ec4067168ec23e60f3e7';
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D%2BBruno_Mars%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
 
     fetch(chartUrl)
@@ -40,7 +40,7 @@ class Lyrics {
         const answerWords = [];
         const randomWordIndex = () => Math.floor(Math.random() * words.length);
         const words = filteredSnippets[randomIndex].split(' ');
-        const commonWords = ["I", "a", "an", "the", "and", "that", "in", "you", "me", "is", "do", "can", "just", "of", "to", "for", "on", "with", "at", "by", "from", "up", "down", "out", "about", "my", "I'm"];
+        const commonWords = ["I","what", "a", "an", "the", "and", "that", "in", "you", "me", "is", "do", "can", "just", "of", "to", "for", "on", "with", "at", "by", "from", "up", "down", "out", "about", "my", "I'm"];
 
         for (let i = 0; i < wordsToReplace; i++) {
           let selectedWord, randomWordIndex;
