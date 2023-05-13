@@ -10,10 +10,10 @@ Finish That Lyric is a web application built with Javascript that was built duri
 
 
 ## How to play:
-1) You can adjust settings through the settings menu.Options currently include:
-    -mute toggle
-    -Artist input (You can type in any artists name and musixmatch will search it for you)
-    -Number of questions
+1) You can adjust settings through the settings menu.Options currently include:<br>
+    -mute toggle<br>
+    -Artist input (You can type in any artists name and musixmatch will search it for you)<br>
+    -Number of questions<br>
 2) You can see more detailed instructions through the "How to Play" button, or start a new game with the "Begin" button.
 3) A timer will countdown from 3 seconds and partially completed lyrics will appear on screen. There are 4 choices to choose from. Clicking on any of them marks them as your selection. Once you are satisfied with your choice, click next and the game will determine if you were correct.
 4) You can use your lifelines. You get one of each per game:
