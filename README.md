@@ -47,3 +47,5 @@ As there is a limited time for this project, there were a few features I would'v
 -spotify functionality. Adding songs you enjoyed to a list. Choosing genres. Listening to clip of lyrics
 
 -Doing a spellcheck suggestion for arist names that are spelled incorrectly.
+
+-creating synonyms for non-english words that are selected for international songs
