@@ -103,6 +103,9 @@ document.addEventListener('DOMContentLoaded',async () => {
       lyrics.getNewLyrics();
       let readyTimer = new Timer(3, document.getElementById("ready-timer"));
       const audioSource = document.getElementById('audio-source');
+
+      settingsMenu.style.display = 'none';
+      htpMenu.style.display = 'none';
       
     readyTimer.start();
     mainTimer.start();
