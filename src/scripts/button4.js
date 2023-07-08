@@ -1,19 +1,23 @@
 class Button4 {
-  constructor(htmlElement, lyrics, timer, state) {
+  constructor(htmlElement, lyrics, timer, state, secondChance) {
     this.htmlElement = htmlElement;
     this.lyrics = lyrics;
-    this.scores = document.querySelectorAll(".score")
-    this.timer = timer
-    this.state = state
+    this.scores = document.querySelectorAll(".score");
+    this.timer = timer;
+    this.state = state;
+    this.secondChance = secondChance;
+    this.correctAnswerChosen = false;
+    this.incorrectAnswerChosen = false; // New flag to track if an incorrect answer has been chosen
     this.handleClick();
   }
+
   handleClick() {
     this.htmlElement.addEventListener("click", () => {
       const isCorrect = this.htmlElement.getAttribute("data-answer") === "correct";
       const innerDiv2 = document.querySelector(".inner-div2");
       const innerDiv3 = document.querySelector(".inner-div3");
       const audioElement = document.querySelector("#myAudio");
-  
+
       if (isCorrect) {
         document.querySelector("#answer-result").innerHTML = "Correct!";
         this.state.points++;
@@ -27,29 +31,42 @@ class Button4 {
         this.timer.stop();
         innerDiv2.style.display = "none";
         innerDiv3.style.display = "block";
+        this.correctAnswerChosen = true;
+        this.incorrectAnswerChosen = false; // Reset the flag when correct answer is chosen
       } else {
-        // add second chance logic
-        let secondChance = document.getElementById("second-chance")
-        if (secondChance.getAttribute("chance") === "true") {
-          this.timer += 10;
-          secondChance.setAttribute('chance', false);
-          this.htmlElement.disabled = true;
-          this.htmlElement.style.backgroundImage = "none";
-          this.htmlElement.style.backgroundColor = "grey";
-        } else {
+        if (this.secondChance && !this.correctAnswerChosen && !this.incorrectAnswerChosen) {
           document.querySelector("#answer-result").innerHTML = "Incorrect";
           audioElement.src = "audio/Incorrect sound effect.mp3";
           audioElement.loop = false;
           audioElement.play();
-  
+
           innerDiv2.style.display = "none";
           innerDiv3.style.display = "block";
           this.timer.stop();
+          this.incorrectAnswerChosen = true; // Set the flag to true when an incorrect answer is chosen
+        } else {
+          const secondChanceButton = document.getElementById("second-chance");
+          const chance = secondChanceButton.getAttribute("chance") === "true";
+          if (chance) {
+            this.timer.time += 10;
+            this.htmlElement.disabled = true;
+            this.htmlElement.style.backgroundImage = "none";
+            this.htmlElement.style.backgroundColor = "grey";
+            chance = false;
+          } else {
+            document.querySelector("#answer-result").innerHTML = "Incorrect";
+            audioElement.src = "audio/Incorrect sound effect.mp3";
+            audioElement.loop = false;
+            audioElement.play();
+
+            innerDiv2.style.display = "none";
+            innerDiv3.style.display = "block";
+            this.timer.stop();
+          }
         }
       }
     });
   }
-  
 }
 
 export default Button4;

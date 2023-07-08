@@ -206,6 +206,13 @@ document.addEventListener('DOMContentLoaded',async () => {
     const scores = document.querySelectorAll('.score');
     const counters = document.querySelectorAll('.questionCounter');
     const finalscore = document.querySelectorAll('.final-score');
+    const buttons = document.querySelectorAll(".choice");
+  
+    buttons.forEach(button => {
+      button.setAttribute('data-answer', 'incorrect');
+      button.style.backgroundImage = 'linear-gradient(to top, rgb(200, 44, 62), rgb(216, 232, 77))';
+      button.disabled = false;
+    });
   
     const audio = document.getElementById("myAudio");
     audio.src = "audio/Game Show Tv Theme Music.mp3";
@@ -225,19 +232,30 @@ document.addEventListener('DOMContentLoaded',async () => {
     finalscore.textContent = state.points;
   
     const fiftyFifty = document.getElementById('fifty-fifty');
-    fiftyFifty.setAttribute('used', 'false');
-    fiftyFifty.disabled = false;
+    fiftyFifty.removeAttribute('disabled');
+    fiftyFifty.style.backgroundColor = '#d74a23';
+    fiftyFifty.setAttribute('available', 'true');
+  
     const secondChance = document.getElementById('second-chance');
-    secondChance.setAttribute('used', 'false');
-    secondChance.disabled = false;
+    secondChance.removeAttribute('disabled');
+    secondChance.style.backgroundColor = '#d74a23';
+    secondChance.setAttribute('available', 'true');
   
     const innerDiv4 = document.querySelector('.inner-div4');
     const innerDiv1 = document.querySelector('.inner-div1');
     innerDiv4.style.display = 'none';
     innerDiv1.style.display = 'flex';
   
+    // Remove event listener from second chance button
+    const clonedSecondChance = secondChance.cloneNode(true);
+    secondChance.parentNode.replaceChild(clonedSecondChance, secondChance);
+  
+    // Create a new instance of the SecondChance class
+    const secondChanceButton = new SecondChance(clonedSecondChance);
+  
     await lyrics.getNewLyrics();
   });
+  
   
 })
 
