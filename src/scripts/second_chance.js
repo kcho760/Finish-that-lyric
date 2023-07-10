@@ -3,6 +3,7 @@ class SecondChance {
     this.htmlElement = htmlElement;
     this.available = true;
     this.handleClick();
+    this.chance = false;
   }
 
   handleClick() {

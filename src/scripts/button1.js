@@ -20,6 +20,8 @@ class Button1 {
 
       if (isCorrect) {
         document.querySelector("#answer-result").innerHTML = "Correct!";
+        const secondChanceButton = document.getElementById("second-chance");
+        secondChanceButton.setAttribute("chance", "false");
         this.state.points++;
         this.scores.forEach(score => {
           score.textContent = this.state.points;
@@ -46,13 +48,14 @@ class Button1 {
           this.incorrectAnswerChosen = true; // Set the flag to true when an incorrect answer is chosen
         } else {
           const secondChanceButton = document.getElementById("second-chance");
-          const chance = secondChanceButton.getAttribute("chance") === "true";
+          let chance = secondChanceButton.getAttribute("chance") === "true";
+          console.log(chance)
           if (chance) {
-            this.timer.time += 10;
             this.htmlElement.disabled = true;
             this.htmlElement.style.backgroundImage = "none";
             this.htmlElement.style.backgroundColor = "grey";
-            chance = false;
+            secondChanceButton.setAttribute("chance", "false");
+            console.log(secondChanceButton.getAttribute("chance"))
           } else {
             document.querySelector("#answer-result").innerHTML = "Incorrect";
             audioElement.src = "audio/Incorrect sound effect.mp3";
