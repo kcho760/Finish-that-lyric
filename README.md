@@ -1,5 +1,5 @@
 ## Finish That Lyric
-[Finish That Lyric](https://kcho760.github.io/Finish-that-lyric/ Go to Live Link)
+[Finish That Lyric](https://kcho760.github.io/Finish-that-lyric/) Go to Live Link
 
 Finish That Lyric is a web application built with Javascript that was built during my time at App Academy. Users are presented with the first part of the phrase from a song and has to guess the remaining words.
 
