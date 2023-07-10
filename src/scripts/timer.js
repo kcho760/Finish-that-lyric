@@ -12,7 +12,9 @@ class Timer {
     const seconds = this.time;
     const timer = this.htmlelement;
     timer.innerHTML = seconds;
-    if (this.time === 5) {
+    if (this.time > 5) {
+      this.htmlelement.style.color = "green";
+    } else {
       this.htmlelement.style.color = "red";
     }
   }
@@ -20,7 +22,7 @@ class Timer {
   start() {
     // clear the old timer if it exists
     this.stop();
-
+    this.htmlelement.style.color = "green";
     // create a new timer
     this.intervalId = setInterval(() => {
       this.time--;
