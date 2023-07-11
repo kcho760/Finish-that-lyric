@@ -11,7 +11,6 @@ class Lyrics {
     const artistName = document.getElementById('api-input').value;
     const artistUrl = encodeURIComponent(artistName);
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D${artistName}%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
-  console.log(chartUrl)
     fetch(chartUrl)
       .then(response => {
         if (!response.ok) {
