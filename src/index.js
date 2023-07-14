@@ -1,4 +1,4 @@
-import Playbutton from "./scripts/playButton"
+import Playbutton from "./scripts/playButton";
 import Lyrics from "./scripts/lyrics";
 import FiftyFifty from "./scripts/fifty_fifty";
 import SecondChance from "./scripts/second_chance";
@@ -8,15 +8,29 @@ import Button3 from "./scripts/button3";
 import Button4 from "./scripts/button4";
 import NextQuestionButton from "./scripts/nextQuestionButton";
 import Timer from "./scripts/timer"
+
 const state = { points: 0 };
 const numQuestions = {number: 3 };
 
+async function fetchWords() {
+  try {
+    const response = await fetch('https://api.datamuse.com/words?rel_syn=example');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+    return [];
+  }
+}
+
 document.addEventListener('DOMContentLoaded',async () => {
+  const words = await fetchWords();
+  console.log(words); 
+
   const clickMe = document.getElementById('click-me');
   const myAudio = document.getElementById('myAudio');
   clickMe.addEventListener('click', async () => {
     const startDiv = document.getElementById('start-div');
-    //plays music for lobby screen on start
     myAudio.play();
     startDiv.classList.add('move-up');
   });
