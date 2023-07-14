@@ -84,7 +84,26 @@ document.addEventListener('DOMContentLoaded',async () => {
     
     const loadLyrics = async () => {
       lyrics = new Lyrics();
-      await lyrics.getNewLyrics();
+      
+      // Try to fetch lyrics up to 3 times
+      for (let i = 0; i < 3; i++) {
+        try {
+          await lyrics.getNewLyrics();
+          break;
+        } catch (err) {
+          console.error('Failed to fetch lyrics', err);
+          
+          // If it's the last try, rethrow the error
+          if (i === 2) {
+            throw err;
+          }
+          
+          // Otherwise, wait a second before retrying
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+      }
+  
+      // Continue with the rest of the setup...
       mainTimer = new Timer(18, mainTimer);
       const fifty_fifty = document.getElementById('fifty-fifty');
       new FiftyFifty(fifty_fifty);
@@ -99,8 +118,13 @@ document.addEventListener('DOMContentLoaded',async () => {
       const button4 = document.getElementById('button4');
       new Button4(button4, lyrics, mainTimer, state);
     };
-    await loadLyrics();
-    
+  
+    try {
+      await loadLyrics();
+    } catch (error) {
+      console.error('Failed to load lyrics after 3 attempts', error);
+      // Handle the error
+    }
     scores.forEach(score=> {
       score.textContent = state.points;
     })
