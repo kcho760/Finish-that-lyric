@@ -14,17 +14,17 @@ const numQuestions = {number: 3 };
 
 
 document.addEventListener('DOMContentLoaded',async () => {
-  async function fetchWords() {
-    try {
-      const response = await fetch('https://api.datamuse.com/words?rel_syn=example');
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error:', error);
-      return [];
-    }
-  }
-  const words = await fetchWords();
+  // async function fetchWords() {
+  //   try {
+  //     const response = await fetch('https://api.datamuse.com/words?rel_syn=example');
+  //     const data = await response.json();
+  //     return data;
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     return [];
+  //   }
+  // }
+  // const words = await fetchWords();
   const clickMe = document.getElementById('click-me');
   const myAudio = document.getElementById('myAudio');
   clickMe.addEventListener('click', async () => {
