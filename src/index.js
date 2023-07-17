@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Continue with the rest of the setup...
-    mainTimer = new Timer(18, mainTimer);
+    mainTimer = new Timer(21, mainTimer);
     const fifty_fifty = document.getElementById('fifty-fifty');
     new FiftyFifty(fifty_fifty);
     const second_chance = document.getElementById('second-chance');
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   new Playbutton(playButton);
   playButton.addEventListener('click', async () => {
     lyrics.getNewLyrics();
-    let readyTimer = new Timer(3, document.getElementById("ready-timer"));
+    let readyTimer = new Timer(5, document.getElementById("ready-timer"));
     const audioSource = document.getElementById('audio-source');
 
     settingsMenu.style.display = 'none';
@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const trackName = document.getElementById('track-name').textContent;
       await lyrics.getNewLyrics(trackName);
-      mainTimer.time = 18;
-      readyTimer.time = 3;
+      mainTimer.time = 20;
+      readyTimer.time = 5;
       readyTimer.start();
 
       buttons.forEach(button => {
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       audio.play();
     } else {
       // End screen logic
-      mainTimer.time = 15;
+      mainTimer.time = 20;
       const finalScore = document.querySelector(".final-score");
       const score = state.points;
       finalScore.textContent = `${score} / ${counter.textContent}`;
