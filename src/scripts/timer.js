@@ -19,6 +19,12 @@ class Timer {
     }
   }
 
+  restart() {
+    this.stop(); // Stop the current timer
+    this.time = this.initialTime; // Reset the time
+    this.start(); // Start the timer
+  }
+
   start() {
     // clear the old timer if it exists
     this.stop();

@@ -66,6 +66,7 @@ class Lyrics {
 
         const question = words.join(' ');
         const lyricsText = `${question}`;
+        console.log(lyricsText)
 
         document.getElementById("lyrics").innerHTML = lyricsText;
         const buttons = [document.getElementById("button1"), document.getElementById("button2"), document.getElementById("button3"), document.getElementById("button4")];
@@ -89,6 +90,7 @@ class Lyrics {
           }
 
           const randomWord = availableWords[Math.floor(Math.random() * availableWords.length)];
+          console.log(randomWord);
           button.textContent = randomWord.word;
           button.setAttribute("data-answer", "incorrect");
 
