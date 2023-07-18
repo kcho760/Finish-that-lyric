@@ -1,25 +1,24 @@
-//snippet version
 class Lyrics {
   constructor() {
   }
-//key1: c335682791d58fcd23f5d30abbc72d34
-//key2: ebd7f9988730ec4067168ec23e60f3e7
-//key3: eca0bf1d91cfe339d5cf01290bca48db
 
   async getNewLyrics() {
     const apikey = 'c335682791d58fcd23f5d30abbc72d34';
     const artistName = document.getElementById('api-input').value;
     const artistUrl = encodeURIComponent(artistName);
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D${artistName}%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
+    console.log('Chart URL:', chartUrl);
     
     fetch(chartUrl)
       .then(response => {
+        console.log('Initial Fetch Response:', response);
         if (!response.ok) {
           throw new Error(`Failed to retrieve top tracks: ${response.status} ${response.statusText}`);
         }
         return response.json();
       })
       .then(data => {
+        console.log('Initial Fetch Data:', data);
         const tracks = data.message.body.track_list;
         const randomIndex = Math.floor(Math.random() * tracks.length);
         const track_id = tracks[randomIndex].track.track_id;
@@ -28,15 +27,18 @@ class Lyrics {
         document.getElementById("artist-name").textContent = `Artist: ${this.artistName}`;
         document.getElementById("track-name").textContent = `Track: ${this.trackName}`;
         const snippetsUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.snippet.get%3Ftrack_id%3D${track_id}%26apikey%3D${apikey}`;
+        console.log('Snippets URL:', snippetsUrl);
         return fetch(snippetsUrl);
       })
       .then(response => {
+        console.log('Snippets Fetch Response:', response);
         if (!response.ok) {
           throw new Error('Failed to retrieve snippets');
         }
         return response.json();
       })
       .then(async data => {
+        console.log('Snippets Data:', data);
         const snippets = data.message.body.snippet.snippet_body.split("\n");
         const filteredSnippets = snippets.filter(snippet => !snippet.includes("This Lyrics is NOT for Commercial use") && !snippet.endsWith("..."));
         const randomIndex = Math.floor(Math.random() * filteredSnippets.length);
@@ -60,13 +62,14 @@ class Lyrics {
               break;
             }
           }
+          console.log('Selected Word:', selectedWord);
           answerWords.push({ word: selectedWord, index: randomWordIndex });
           words[randomWordIndex] = "____";
         }
 
         const question = words.join(' ');
         const lyricsText = `${question}`;
-        console.log(lyricsText)
+        console.log('Lyrics Text:', lyricsText);
 
         document.getElementById("lyrics").innerHTML = lyricsText;
         const buttons = [document.getElementById("button1"), document.getElementById("button2"), document.getElementById("button3"), document.getElementById("button4")];
@@ -78,9 +81,10 @@ class Lyrics {
 
         const incorrectButtons = buttons.filter((button, index) => index !== answerButtonIndex);
         const startTime = new Date();
-        // Fetch related words from Datamuse.
+        console.log('Starting to fetch related words at:', startTime);
         const relatedWordsResponse = await fetch(`https://api.datamuse.com/words?ml=${answerWords[0].word}&max=100&min=4`);
         const relatedWords = await relatedWordsResponse.json();
+        console.log('Related Words Response:', relatedWords);
 
         if (!relatedWords || relatedWords.length === 0) {
           console.error(`No related words found for "${answerWords[0].word}".`);
@@ -96,7 +100,6 @@ class Lyrics {
         
             const proposedWordObj = relatedWords[wordsCounter];
         
-            // Ensure the proposed word object is not undefined before proceeding
             if (!proposedWordObj) {
               console.error(`Related word object is undefined at index ${wordsCounter}.`);
               wordsCounter++;
@@ -105,13 +108,11 @@ class Lyrics {
         
             const proposedWord = proposedWordObj.word;
         
-            // Check if the proposed word has already been used.
             if (usedWords.includes(proposedWord)) {
               wordsCounter++;
               continue;  // Skip this iteration and try the next word.
             }
         
-            // If the word hasn't been used, use it and move to the next word.
             button.textContent = proposedWord;
             button.setAttribute("data-answer", "incorrect");
             usedWords.push(proposedWord);
@@ -124,9 +125,6 @@ class Lyrics {
         const timeDifference = endTime - startTime;
 
         console.log(`Time taken for Datamuse API call: ${timeDifference} ms`);
-        // await Promise.all(promises).catch(error => {
-        //   console.error('Error:', error);
-        // });
       });
   }
 }
