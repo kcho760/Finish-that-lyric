@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const playButton = document.getElementById('play-button');
   new Playbutton(playButton);
   playButton.addEventListener('click', async () => {
-    lyrics.getNewLyrics();
+    // lyrics.getNewLyrics();
     let readyTimer = new Timer(5, document.getElementById("ready-timer"));
     const audioSource = document.getElementById('audio-source');
 

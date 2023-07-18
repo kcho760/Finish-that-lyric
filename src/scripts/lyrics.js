@@ -77,29 +77,56 @@ class Lyrics {
         const usedWords = [];
 
         const incorrectButtons = buttons.filter((button, index) => index !== answerButtonIndex);
+        const startTime = new Date();
+        // Fetch related words from Datamuse.
+        const relatedWordsResponse = await fetch(`https://api.datamuse.com/words?ml=${answerWords[0].word}&max=100&min=4`);
+        const relatedWords = await relatedWordsResponse.json();
 
-        const promises = incorrectButtons.map(async (button) => {
-          const response = await fetch(`https://api.datamuse.com/words?ml=${answerWords[0].word}&max=100&min=4`);
-          const words = await response.json();
+        if (!relatedWords || relatedWords.length === 0) {
+          console.error(`No related words found for "${answerWords[0].word}".`);
+          return;
+        }
 
-          const availableWords = words.filter(word => !usedWords.includes(word.word));
-
-          if (availableWords.length === 0) {
-            usedWords.length = 0;
-            return;
+        let wordsCounter = 0;
+        incorrectButtons.forEach(button => {
+          while (true) {
+            if (wordsCounter >= relatedWords.length) {
+              wordsCounter = 0;  // Reset the counter if we've used all available words.
+            }
+        
+            const proposedWordObj = relatedWords[wordsCounter];
+        
+            // Ensure the proposed word object is not undefined before proceeding
+            if (!proposedWordObj) {
+              console.error(`Related word object is undefined at index ${wordsCounter}.`);
+              wordsCounter++;
+              continue;  // Skip this iteration and try the next word.
+            }
+        
+            const proposedWord = proposedWordObj.word;
+        
+            // Check if the proposed word has already been used.
+            if (usedWords.includes(proposedWord)) {
+              wordsCounter++;
+              continue;  // Skip this iteration and try the next word.
+            }
+        
+            // If the word hasn't been used, use it and move to the next word.
+            button.textContent = proposedWord;
+            button.setAttribute("data-answer", "incorrect");
+            usedWords.push(proposedWord);
+            wordsCounter++;
+            break;
           }
-
-          const randomWord = availableWords[Math.floor(Math.random() * availableWords.length)];
-          console.log(randomWord);
-          button.textContent = randomWord.word;
-          button.setAttribute("data-answer", "incorrect");
-
-          usedWords.push(randomWord.word);
         });
+        
+        const endTime = new Date();
+        const timeDifference = endTime - startTime;
 
-        await Promise.all(promises).catch(error => {
-          console.error('Error:', error);
-        });
+        console.log(`Time taken for Datamuse API call: ${timeDifference} ms`);
+        // await Promise.all(promises).catch(error => {
+        //   console.error('Error:', error);
+        // });
       });
   }
 }
