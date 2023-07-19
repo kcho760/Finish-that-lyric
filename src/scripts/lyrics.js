@@ -15,8 +15,10 @@ class Lyrics {
         if (!response.ok) {
           throw new Error(`Failed to retrieve top tracks: ${response.status} ${response.statusText}`);
         }
+        // Returns top tracks
         return response.json();
       })
+      //selects a random track and gets the track id and lyrics snippet
       .then(data => {
         console.log('Initial Fetch Data:', data);
         const tracks = data.message.body.track_list;
@@ -28,10 +30,12 @@ class Lyrics {
         document.getElementById("track-name").textContent = `Track: ${this.trackName}`;
         const snippetsUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.snippet.get%3Ftrack_id%3D${track_id}%26apikey%3D${apikey}`;
         console.log('Snippets URL:', snippetsUrl);
+        console.log('Start fetch Musixmatch:', new Date());
         return fetch(snippetsUrl);
       })
       .then(response => {
         console.log('Snippets Fetch Response:', response);
+        console.log('End fetch Musixmatch:', new Date());
         if (!response.ok) {
           throw new Error('Failed to retrieve snippets');
         }
@@ -50,7 +54,7 @@ class Lyrics {
           "do", "can", "just", "of", "to", "for",
            "on", "with", "at", "by", "from", "up",
             "down", "out", "about", "my", "I'm"
-          ,"oh","ooh","oooh","ooooh","oooooh","ooooooh"];
+          ,"oh","ooh","oooh","ooooh","oooooh","ooooooh", "(skate)"];
 
         for (let i = 0; i < wordsToReplace; i++) {
           let selectedWord;
@@ -82,7 +86,7 @@ class Lyrics {
         const incorrectButtons = buttons.filter((button, index) => index !== answerButtonIndex);
         const startTime = new Date();
         console.log('Starting to fetch related words at:', startTime);
-        const relatedWordsResponse = await fetch(`https://api.datamuse.com/words?ml=${answerWords[0].word}&max=100&min=4`);
+        const relatedWordsResponse = await fetch(`https://api.datamuse.com/words?ml=${answerWords[0].word}&max=3&min=3`);
         const relatedWords = await relatedWordsResponse.json();
         console.log('Related Words Response:', relatedWords);
 

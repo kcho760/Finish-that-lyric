@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Continue with the rest of the setup...
-    mainTimer = new Timer(21, mainTimer);
+    mainTimer = new Timer(100, mainTimer);
     const fifty_fifty = document.getElementById('fifty-fifty');
     new FiftyFifty(fifty_fifty);
     const second_chance = document.getElementById('second-chance');
@@ -255,6 +255,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Create a new instance of the SecondChance class
     const secondChanceButton = new SecondChance(clonedSecondChance);
 
-    await lyrics.getNewLyrics();
+    // await lyrics.getNewLyrics();
   });
 });
