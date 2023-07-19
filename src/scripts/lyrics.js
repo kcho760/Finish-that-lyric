@@ -52,7 +52,7 @@ class Lyrics {
           "do", "can", "just", "of", "to", "for",
            "on", "with", "at", "by", "from", "up",
             "down", "out", "about", "my", "I'm"
-          ,"oh","ooh","oooh","ooooh","oooooh","ooooooh", "(skate)"];
+          ,"oh","ooh","oooh","ooooh","oooooh","ooooooh", "(skate)", "ooh-ooh"];
 
         for (let i = 0; i < wordsToReplace; i++) {
           let selectedWord;
