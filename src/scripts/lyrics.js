@@ -8,8 +8,14 @@ class Lyrics {
     const artistUrl = encodeURIComponent(artistName);
     const chartUrl = `https://proxy-92z3.onrender.com/?url=https%3A%2F%2Fapi.musixmatch.com%2Fws%2F1.1%2Ftrack.search%3Fq_artist%3D${artistName}%26page_size%3D15%26s_track_rating%3Ddesc%26apikey%3D${apikey}`;
     console.log('Chart URL:', chartUrl);
-    
-    fetch(chartUrl)
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(new Error('Loading timed out'));
+      }, 5000);
+    });
+
+    Promise.race([fetch(chartUrl), timeoutPromise])
       .then(response => {
         console.log('Initial Fetch Response:', response);
         if (!response.ok) {
@@ -129,7 +135,27 @@ class Lyrics {
         const timeDifference = endTime - startTime;
 
         console.log(`Time taken for Datamuse API call: ${timeDifference} ms`);
-      });
+      })
+      .catch(err => {
+        console.error('Failed to fetch lyrics', err);
+        // Set a default question and answer options
+        const defaultQuestion = "Oh, ____ to me, baby";
+        const defaultAnswerOptions = ["Slide", "Glide", "Race", "Skate"];
+      
+        document.getElementById("lyrics").innerHTML = defaultQuestion;
+        const buttons = [document.getElementById("button1"), document.getElementById("button2"), document.getElementById("button3"), document.getElementById("button4")];
+        const answerButtonIndex = Math.floor(Math.random() * 4);
+        buttons[answerButtonIndex].textContent = defaultAnswerOptions[3].toLowerCase();
+        buttons[answerButtonIndex].setAttribute("data-answer", "correct");
+        const incorrectButtons = buttons.filter((button, index) => index !== answerButtonIndex);
+        incorrectButtons.forEach((button, index) => {
+          button.textContent = defaultAnswerOptions[index].toLowerCase();
+          button.setAttribute("data-answer", "incorrect");
+        });
+      
+        this.lyricsLoaded = true;
+        this.answersLoaded = true;
+      });          
   }
 }
 

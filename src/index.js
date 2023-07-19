@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const loadLyrics = async () => {
     lyrics = new Lyrics();
 
-    // Try to fetch lyrics up to 3 times
     for (let i = 0; i < 3; i++) {
       try {
         await lyrics.getNewLyrics();
@@ -77,17 +76,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       } catch (err) {
         console.error('Failed to fetch lyrics', err);
 
-        // If it's the last try, rethrow the error
         if (i === 2) {
           throw err;
         }
 
-        // Otherwise, wait a second before retrying
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
     }
 
-    // Continue with the rest of the setup...
     mainTimer = new Timer(100, mainTimer);
     const fifty_fifty = document.getElementById('fifty-fifty');
     new FiftyFifty(fifty_fifty);
@@ -103,7 +99,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     new Button4(button4, lyrics, mainTimer, state);
   };
 
-  // Load lyrics as soon as DOM is loaded
   await loadLyrics();
 
   scores.forEach(score => {
@@ -115,8 +110,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const playButton = document.getElementById('play-button');
   new Playbutton(playButton);
+  
   playButton.addEventListener('click', async () => {
-    // lyrics.getNewLyrics();
     let readyTimer = new Timer(5, document.getElementById("ready-timer"));
     const audioSource = document.getElementById('audio-source');
 
@@ -133,6 +128,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     counters.forEach(counter => {
       counter.textContent = parseInt(counter.textContent) + 1;
     });
+
+    await lyrics.getNewLyrics();
+    playButton.textContent = 'Play';
   });
 
   const updateQuestionCounter = () => {
@@ -144,6 +142,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const nextQuestion = document.getElementById('next-question');
   new NextQuestionButton(nextQuestion);
+
 
   nextQuestion.addEventListener("click", async () => {
     const counter = document.querySelector(".questionCounter");
