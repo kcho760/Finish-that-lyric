@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
 
-    mainTimer = new Timer(100, mainTimer);
+    mainTimer = new Timer(15, mainTimer);
     const fifty_fifty = document.getElementById('fifty-fifty');
     new FiftyFifty(fifty_fifty);
     const second_chance = document.getElementById('second-chance');

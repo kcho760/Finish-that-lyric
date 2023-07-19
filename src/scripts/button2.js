@@ -49,13 +49,11 @@ class Button2 {
         } else {
           const secondChanceButton = document.getElementById("second-chance");
           let chance = secondChanceButton.getAttribute("chance") === "true";
-          console.log(chance)
           if (chance) {
             this.htmlElement.disabled = true;
             this.htmlElement.style.backgroundImage = "none";
             this.htmlElement.style.backgroundColor = "grey";
             secondChanceButton.setAttribute("chance", "false");
-            console.log(secondChanceButton.getAttribute("chance"))
           } else {
             document.querySelector("#answer-result").innerHTML = "Incorrect";
             audioElement.src = "audio/Incorrect sound effect.mp3";

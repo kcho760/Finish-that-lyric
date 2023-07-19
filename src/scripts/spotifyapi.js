@@ -23,9 +23,7 @@ class Spotifyapi {
 
     const response = await fetch('https://accounts.spotify.com/api/token', requestOptions);
     const data = await response.json();
-    console.log(data);
     this.accessToken = data.access_token;
-    console.log(`Access token: ${this.accessToken}`);
     
     this.accessToken = data.access_token;
     this.setHeaders(); // add this line to set headers with updated access token
@@ -51,8 +49,6 @@ async getSongByName() {
   const data = await response.json();
     if (data.tracks.items.length > 0) {
       const trackId = data.tracks.items[0].id;
-      console.log(this)
-      console.log(`Track ID for ${this.trackName}: ${trackId}`);
       return trackId;
     } else {
       throw new Error(`No tracks found for ${this.trackName}`);
@@ -74,7 +70,6 @@ async getSongByName() {
     try {
       const response = await fetch(uri, requestOptions);
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
       console.error(error);

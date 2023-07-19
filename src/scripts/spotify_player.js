@@ -16,14 +16,11 @@ class SpotifyPlayer {
   
       // Ready
       this.player.addListener('ready', ({ device_id }) => {
-        console.log('The Web Playback SDK is ready to play music!');
-        console.log('Device ID', device_id);
       })
       
   
       // Not Ready
       this.player.addListener('not_ready', ({ device_id }) => {
-        console.log('Device ID has gone offline', device_id);
       });
   
       this.player.addListener('initialization_error', ({ message }) => {
@@ -35,7 +32,6 @@ class SpotifyPlayer {
       
       this.player.connect().then(success => {
         if (success) {
-          console.log('The Web Playback SDK successfully connected to Spotify!');
         }
       })
       
